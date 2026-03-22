@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { units, unitDataMap } from "./data";
 
-const DEFAULT_PROGRESS = { completed: [], inProgress: [] };
+const DEFAULT_PROGRESS: { completed: number[]; inProgress: number[] } = { completed: [], inProgress: [] };
 async function loadProgress() {
   try { const r = await window.localStorage.get("progress"); return r ? JSON.parse(r.value) : DEFAULT_PROGRESS; }
   catch { return DEFAULT_PROGRESS; }
 }
-async function saveProgress(p) {
+async function saveProgress(p: { completed: number[]; inProgress: number[] }) {
   try { await window.localStorage.set("progress", JSON.stringify(p)); } catch {}
 }
 
