@@ -28,6 +28,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
+        <link rel="icon" href="/favicon.ico" />
         <meta name="google-adsense-account" content="ca-pub-3938476116806210" />
         <script
           async
