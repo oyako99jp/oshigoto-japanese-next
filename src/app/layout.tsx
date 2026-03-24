@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "おしごとJapanese | ビジネス日本語 Practical Business Japanese",
   description: "職場で即使えるビジネス日本語を、業界別に学べるコースです。Learn business Japanese for your industry. Real workplace expressions, ready to use.",
+  alternates: {
+    canonical: "https://oshigoto-japanese.com",
+  },
 };
 
 export default function RootLayout({
