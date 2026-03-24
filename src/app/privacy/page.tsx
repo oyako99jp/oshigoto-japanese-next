@@ -10,7 +10,7 @@ export default function PrivacyPage() {
     <div style={{ minHeight: "100vh", width: "100vw", background: "#f5f5f5", fontFamily: "'Segoe UI', sans-serif", display: "flex", flexDirection: "column" }}>
       <div style={{ width: "100%", maxWidth: 800, margin: "0 auto", padding: "32px 24px 48px", flex: 1 }}>
         <div style={{ background: "#ffffff", padding: 36, boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
-          <a href="/it" style={{ color: "#14469e", fontSize: 14, fontWeight: 600, marginBottom: 20, display: "inline-block", textDecoration: "none" }}>← ホームに戻る / Back to Home</a>
+          <a href="https://oshigoto-japanese.com/" style={{ color: "#14469e", fontSize: 14, fontWeight: 600, marginBottom: 20, display: "inline-block", textDecoration: "none" }}>← ホームに戻る / Back to Home</a>
           <h1 style={{ fontSize: 24, fontWeight: 800, color: "#14469e", marginBottom: 28 }}>プライバシーポリシー / Privacy Policy</h1>
           <div style={{ fontSize: 14, color: "#333333", lineHeight: 1.9 }}>
             <h2 style={{ fontSize: 16, fontWeight: 700, color: "#14469e", marginBottom: 8, marginTop: 24 }}>1. 運営者について</h2>
