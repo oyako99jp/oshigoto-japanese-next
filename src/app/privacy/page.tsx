@@ -258,20 +258,6 @@ export default function PrivacyPage() {
             </div>
           </div>
 
-          {/* Date line */}
-          <div
-            style={{
-              marginTop: 48,
-              paddingTop: 24,
-              borderTop: "2px solid rgba(0,0,0,0.1)",
-              fontSize: 13,
-              fontWeight: 700,
-              opacity: 0.6,
-              fontStyle: "italic",
-            }}
-          >
-            最終更新: 2024.05.20
-          </div>
         </div>
 
         {/* CTA below card */}
