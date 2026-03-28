@@ -53,7 +53,6 @@ function Header({ isPC }) {
           <h1 style={{ margin: 0, fontSize: isPC ? 22 : 18, fontWeight: 800 }}>ITエンジニアのためのビジネス日本語</h1>
           <p style={{ margin: 0, opacity: 0.85, fontSize: isPC ? 14 : 12 }}>おしごとJAPANESE</p>
         </div>
-        <button onClick={() => router.push("/")} style={{ background: "none", border: "none", color: colors.white, cursor: "pointer", fontSize: 13, fontWeight: 600, padding: 0, opacity: 0.85 }}>← トップへ</button>
       </div>
     </div>
   );
@@ -66,7 +65,7 @@ function Footer() {
       <div style={{ maxWidth: 1080, margin: "0 auto", padding: "24px", textAlign: "center" }}>
         <div style={{ fontSize: 13, marginBottom: 12 }}>© おしごとJapanese</div>
         <div style={{ display: "flex", gap: 24, justifyContent: "center" }}>
-          <button onClick={() => router.push("/")} style={{ background: "none", border: "none", color: "#aaaaaa", cursor: "pointer", fontSize: 13, textDecoration: "underline", padding: 0 }}>← トップへ戻る</button>
+          <button onClick={() => router.push("/")} style={{ background: "none", border: "none", color: "#aaaaaa", cursor: "pointer", fontSize: 13, textDecoration: "underline", padding: 0 }}>おしごとJAPANESE</button>
           <button onClick={() => router.push("/privacy")} style={{ background: "none", border: "none", color: "#aaaaaa", cursor: "pointer", fontSize: 13, textDecoration: "underline", padding: 0 }}>プライバシーポリシー</button>
           <button onClick={() => router.push("/contact")} style={{ background: "none", border: "none", color: "#aaaaaa", cursor: "pointer", fontSize: 13, textDecoration: "underline", padding: 0 }}>お問い合わせ</button>
         </div>

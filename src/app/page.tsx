@@ -92,7 +92,7 @@ export default function TopPage() {
               { color: yellow, iconColor: black, icon: "quiz", labelJP: "クイズで確認する", labelEN: "Test Yourself", desc: "クイズで理解度を確認できます。/ Check your understanding with quizzes." },
               { color: black, iconColor: white, icon: "groups", labelJP: "ロールプレイをする", labelEN: "Try Role-Play", desc: "実践的なシナリオで練習できます。/ Practice with real-world role-play scenarios." },
             ].map(item => (
-              <div key={item.labelJP} className="tp-feature-card" style={{ border: `4px solid ${black}`, boxShadow: "8px 8px 0px 0px rgba(0,0,0,1)", background: white, padding: 32, display: "flex", gap: 24, alignItems: "flex-start" }}>
+              <div key={item.labelJP} style={{ border: `4px solid ${black}`, boxShadow: "8px 8px 0px 0px rgba(0,0,0,1)", background: white, padding: 32, display: "flex", gap: 24, alignItems: "flex-start" }}>
                 <div style={{ width: 56, height: 56, background: item.color, border: `4px solid ${black}`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <span className="material-symbols-outlined" style={{ color: item.iconColor, fontSize: 30 }}>{item.icon}</span>
                 </div>
@@ -114,30 +114,25 @@ export default function TopPage() {
           <div style={{ marginBottom: 64, borderBottom: `8px solid ${black}`, paddingBottom: 16, display: "inline-block" }}>
             <h2 style={{ fontSize: 36, fontWeight: 900, letterSpacing: "0.1em", textTransform: "uppercase", margin: 0, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>COURSE CATEGORIES</h2>
           </div>
-          <div className="tp-courses-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>
+          <div className="tp-courses-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 32 }}>
             {/* IT Engineer */}
-            <div className="tp-course-card" style={{ border: `4px solid ${black}`, background: blue, padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 400, boxShadow: shadowBlack }}>
+            <div className="tp-course-card" onClick={() => router.push("/it")} style={{ border: `4px solid ${black}`, background: blue, padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 400, boxShadow: shadowBlack, cursor: "pointer" }}>
               <div>
                 <span style={{ background: white, color: blue, fontSize: 11, fontWeight: 900, letterSpacing: "0.1em", padding: "4px 12px", border: `2px solid ${black}`, textTransform: "uppercase", marginBottom: 24, display: "inline-block" }}>公開中</span>
-                <h3 style={{ fontSize: 40, fontWeight: 900, color: white, lineHeight: 1.1, marginBottom: 16, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>IT<br />ENGINEER</h3>
+                <h3 style={{ fontSize: 32, fontWeight: 900, color: white, lineHeight: 1.2, marginBottom: 8, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>ITのビジネス日本語</h3>
+                <p style={{ fontSize: 14, fontWeight: 500, color: white, margin: "0 0 16px", letterSpacing: "0.05em" }}>JAPANESE FOR IT</p>
+                <p style={{ fontSize: 13, fontWeight: 500, color: white, lineHeight: 1.7, margin: 0, opacity: 0.9 }}>朝会・コードレビュー・クライアント対応など、職場で即使える日本語を学べます。Business Japanese for IT engineers working in Japan.</p>
               </div>
               <button className="tp-enroll-btn" onClick={() => router.push("/it")}>受講する</button>
             </div>
-            {/* Fashion */}
+            {/* Interview & Career */}
             <div className="tp-course-card" style={{ border: `4px solid ${black}`, background: red, padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 400, boxShadow: shadowBlack, opacity: 0.9 }}>
               <div>
                 <span style={{ background: black, color: white, fontSize: 11, fontWeight: 900, letterSpacing: "0.1em", padding: "4px 12px", border: `2px solid ${white}`, textTransform: "uppercase", marginBottom: 24, display: "inline-block" }}>COMING SOON</span>
-                <h3 style={{ fontSize: 40, fontWeight: 900, color: white, lineHeight: 1.1, marginBottom: 16, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>RETAIL &<br />APPAREL</h3>
+                <h3 style={{ fontSize: 32, fontWeight: 900, color: white, lineHeight: 1.2, marginBottom: 8, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>面接の日本語</h3>
+                <p style={{ fontSize: 14, fontWeight: 500, color: white, margin: "0 0 16px", letterSpacing: "0.05em" }}>INTERVIEW JAPANESE</p>
               </div>
               <div style={{ color: white, fontWeight: 900, opacity: 0.5, textAlign: "right", fontSize: 20 }}>02</div>
-            </div>
-            {/* Medical */}
-            <div className="tp-course-card" style={{ border: `4px solid ${black}`, background: "#00A859", padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 400, boxShadow: shadowBlack, opacity: 0.9 }}>
-              <div>
-                <span style={{ background: black, color: white, fontSize: 11, fontWeight: 900, letterSpacing: "0.1em", padding: "4px 12px", border: `2px solid ${white}`, textTransform: "uppercase", marginBottom: 24, display: "inline-block" }}>COMING SOON</span>
-                <h3 style={{ fontSize: 40, fontWeight: 900, color: white, lineHeight: 1.1, marginBottom: 16, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>MEDICAL<br />CARE</h3>
-              </div>
-              <div style={{ color: white, fontWeight: 900, opacity: 0.5, textAlign: "right", fontSize: 20 }}>03</div>
             </div>
             {/* Travel */}
             <div className="tp-course-card" style={{ border: `4px solid ${black}`, background: yellow, padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 400, boxShadow: shadowBlack, opacity: 0.9 }}>
@@ -145,7 +140,7 @@ export default function TopPage() {
                 <span style={{ background: black, color: white, fontSize: 11, fontWeight: 900, letterSpacing: "0.1em", padding: "4px 12px", border: `2px solid ${white}`, textTransform: "uppercase", marginBottom: 24, display: "inline-block" }}>COMING SOON</span>
                 <h3 style={{ fontSize: 40, fontWeight: 900, color: black, lineHeight: 1.1, marginBottom: 16, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>TRAVEL<br />JAPAN</h3>
               </div>
-              <div style={{ color: black, fontWeight: 900, opacity: 0.3, textAlign: "right", fontSize: 20 }}>04</div>
+              <div style={{ color: black, fontWeight: 900, opacity: 0.3, textAlign: "right", fontSize: 20 }}>03</div>
             </div>
           </div>
         </div>
