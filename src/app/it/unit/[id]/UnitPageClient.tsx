@@ -33,17 +33,6 @@ const checkAnswer = (input, correct, variants) => {
 // ============================================================
 // SHARED COMPONENTS
 // ============================================================
-function AdBanner({ horizontal = false }) {
-  return (
-    <div style={{ border: `2px dashed ${colors.primaryLight}`, borderRadius: 0, background: colors.primaryBg, display: "flex", flexDirection: horizontal ? "row" : "column", alignItems: "center", justifyContent: "center", padding: horizontal ? "12px 20px" : "28px 16px", color: colors.primaryLight, textAlign: "center", gap: 10, minHeight: horizontal ? 60 : 220 }}>
-      <div style={{ fontSize: 12, fontWeight: 700, color: colors.primaryLight }}>AD</div>
-      <div>
-        <div style={{ fontSize: 12, fontWeight: 700, color: colors.primaryLight }}>Advertisement</div>
-        <div style={{ fontSize: 10, color: colors.gray }}>Google AdSense · {horizontal ? "320×50" : "300×250"}</div>
-      </div>
-    </div>
-  );
-}
 
 function SectionTab({ sections, active, onChange, isPC }) {
   return (
@@ -350,10 +339,6 @@ function UnitPage({ unitData, onBack, onComplete, unitCompleted }) {
 
   const sidebar = (
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-      <div style={{ background: colors.white, borderRadius: 0, padding: 20, boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
-        <div style={{ fontSize: 11, fontWeight: 600, color: colors.textLight, marginBottom: 12, letterSpacing: 1 }}>SPONSORED</div>
-        <AdBanner />
-      </div>
       <div style={{ background: colors.white, borderRadius: 0, padding: 20, boxShadow: "0 2px 12px rgba(0,0,0,0.07)" }}>
         <h3 style={{ margin: "0 0 14px", fontSize: 14, fontWeight: 700, color: colors.text }}>Unit {unitData.id} Contents</h3>
         {sections.map(s => (

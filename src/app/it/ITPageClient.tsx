@@ -28,10 +28,22 @@ function useWindowWidth() {
 }
 
 const colors = {
-  primary: "#14469e", primaryLight: "#1a56c4", primaryBg: "#f0f4fb",
-  success: "#22c55e", successBg: "#dcfce7",
-  gray: "#555555", grayLight: "#dddddd", grayBg: "#f5f5f5",
-  white: "#ffffff", text: "#111111", textLight: "#888888",
+  primary: "#0055BF",
+  primaryLight: "#0055BF",
+  accent: "#E3000B",
+  yellow: "#FFD500",
+  text: "#000000",
+  textLight: "#555555",
+  grayLight: "#e0e0e0",
+  bg: "#ffffff",
+  cardBg: "#ffffff",
+  // backward-compat keys
+  primaryBg: "#e8f0ff",
+  gray: "#555555",
+  grayBg: "#f5f5f5",
+  white: "#ffffff",
+  success: "#22c55e",
+  successBg: "#dcfce7",
 };
 
 const checkAnswer = (input, correct, variants) => {
@@ -46,7 +58,7 @@ function SectionTab({ sections, active, onChange, isPC }) {
   return (
     <div style={{ borderBottom: "2px solid #dddddd", display: "flex", gap: 0, marginBottom: 24, overflowX: "auto", overflowY: "hidden", WebkitOverflowScrolling: "touch", whiteSpace: "nowrap" }}>
       {sections.map(s => (
-        <button key={s.id} onClick={() => onChange(s.id)} style={{ background: "none", border: "none", borderBottom: active === s.id ? "2px solid #14469e" : "2px solid transparent", marginBottom: -2, padding: "10px 20px", fontWeight: active === s.id ? 700 : 400, color: active === s.id ? "#14469e" : "#555555", cursor: "pointer", fontSize: isPC ? 13 : 12, display: "inline-block", whiteSpace: "nowrap", flexShrink: 0 }}>{s.label}</button>
+        <button key={s.id} onClick={() => onChange(s.id)} style={{ background: "none", border: "none", borderBottom: active === s.id ? "2px solid #0055BF" : "2px solid transparent", marginBottom: -2, padding: "10px 20px", fontWeight: active === s.id ? 700 : 400, color: active === s.id ? "#0055BF" : "#555555", cursor: "pointer", fontSize: isPC ? 13 : 12, display: "inline-block", whiteSpace: "nowrap", flexShrink: 0 }}>{s.label}</button>
       ))}
     </div>
   );
@@ -55,7 +67,7 @@ function SectionTab({ sections, active, onChange, isPC }) {
 function Header({ isPC }) {
   const router = useRouter();
   return (
-    <div style={{ width: "100%", background: "#14469e", color: colors.white }}>
+    <div style={{ width: "100%", background: "#0055BF", color: colors.white }}>
       <div style={{ maxWidth: 1080, margin: "0 auto", padding: isPC ? "18px 24px" : "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <div>
           <h1 style={{ margin: 0, fontSize: isPC ? 22 : 18, fontWeight: 800 }}>ITエンジニアのためのビジネス日本語</h1>
@@ -88,29 +100,29 @@ function PrivacyPage() {
   const isPC = width >= 768;
   const router = useRouter();
   return (
-    <div style={{ minHeight: "100vh", width: "100vw", background: "#f5f5f5", fontFamily: "'Segoe UI', sans-serif", display: "flex", flexDirection: "column" }}>
+    <div style={{ minHeight: "100vh", width: "100vw", background: "#f5f5f5", fontFamily: "'Plus Jakarta Sans', sans-serif", display: "flex", flexDirection: "column" }}>
       <Header isPC={isPC} />
       <div style={{ width: "100%", maxWidth: 800, margin: "0 auto", padding: isPC ? "32px 24px 48px" : "20px 16px 40px", flex: 1 }}>
         <div style={{ background: "#ffffff", padding: isPC ? 36 : 24, boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
-          <button onClick={() => router.push("/it")} style={{ background: "none", border: "none", color: "#14469e", cursor: "pointer", fontSize: 14, fontWeight: 600, marginBottom: 20, padding: 0 }}>← ホームに戻る / Back to Home</button>
-          <h1 style={{ fontSize: isPC ? 24 : 20, fontWeight: 800, color: "#14469e", marginBottom: 28 }}>プライバシーポリシー / Privacy Policy</h1>
-          <div style={{ fontSize: 14, color: "#333333", lineHeight: 1.9 }}>
-            <h2 style={{ fontSize: 16, fontWeight: 700, color: "#14469e", marginBottom: 8, marginTop: 24 }}>1. 運営者について</h2>
+          <button onClick={() => router.push("/it")} style={{ background: "none", border: "none", color: "#0055BF", cursor: "pointer", fontSize: 14, fontWeight: 600, marginBottom: 20, padding: 0 }}>← ホームに戻る / Back to Home</button>
+          <h1 style={{ fontSize: isPC ? 24 : 20, fontWeight: 800, color: "#0055BF", marginBottom: 28 }}>プライバシーポリシー / Privacy Policy</h1>
+          <div style={{ fontSize: 14, color: "#000000", lineHeight: 1.9 }}>
+            <h2 style={{ fontSize: 16, fontWeight: 700, color: "#0055BF", marginBottom: 8, marginTop: 24 }}>1. 運営者について</h2>
             <p style={{ margin: "0 0 8px" }}>当サイト「おしごとJapanese」は、日本語学習コンテンツを提供するウェブサイトです。</p>
             <p style={{ margin: 0 }}>This website "Oshigoto Japanese" provides Japanese language learning content.</p>
-            <h2 style={{ fontSize: 16, fontWeight: 700, color: "#14469e", marginBottom: 8, marginTop: 24 }}>2. 個人情報の取り扱いについて</h2>
+            <h2 style={{ fontSize: 16, fontWeight: 700, color: "#0055BF", marginBottom: 8, marginTop: 24 }}>2. 個人情報の取り扱いについて</h2>
             <p style={{ margin: "0 0 8px" }}>お問い合わせフォームにご入力いただいたお名前・メールアドレス・お問い合わせ内容は、お問い合わせへの返答のみに使用し、第三者への提供は行いません。</p>
             <p style={{ margin: "0 0 8px" }}>フォームはGoogleフォームを使用しており、入力情報はGoogleのサーバーに保存されます。</p>
-            <p style={{ margin: 0 }}>Googleのプライバシーポリシーについては以下をご参照ください：<br /><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "#14469e" }}>https://policies.google.com/privacy</a></p>
-            <h2 style={{ fontSize: 16, fontWeight: 700, color: "#14469e", marginBottom: 8, marginTop: 24 }}>3. 広告について</h2>
+            <p style={{ margin: 0 }}>Googleのプライバシーポリシーについては以下をご参照ください：<br /><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "#0055BF" }}>https://policies.google.com/privacy</a></p>
+            <h2 style={{ fontSize: 16, fontWeight: 700, color: "#0055BF", marginBottom: 8, marginTop: 24 }}>3. 広告について</h2>
             <p style={{ margin: "0 0 8px" }}>当サイトはGoogle AdSenseを利用しています。</p>
             <p style={{ margin: 0 }}>Googleはcookieを使用してユーザーに適切な広告を配信します。詳細はGoogleのポリシーをご参照ください。</p>
-            <h2 style={{ fontSize: 16, fontWeight: 700, color: "#14469e", marginBottom: 8, marginTop: 24 }}>4. アクセス解析について</h2>
+            <h2 style={{ fontSize: 16, fontWeight: 700, color: "#0055BF", marginBottom: 8, marginTop: 24 }}>4. アクセス解析について</h2>
             <p style={{ margin: "0 0 8px" }}>当サイトはGoogle Analyticsを使用してアクセス情報を収集しています。</p>
             <p style={{ margin: 0 }}>収集される情報は匿名であり、個人を特定するものではありません。</p>
-            <h2 style={{ fontSize: 16, fontWeight: 700, color: "#14469e", marginBottom: 8, marginTop: 24 }}>5. 免責事項</h2>
+            <h2 style={{ fontSize: 16, fontWeight: 700, color: "#0055BF", marginBottom: 8, marginTop: 24 }}>5. 免責事項</h2>
             <p style={{ margin: "0 0 8px" }}>当サイトのコンテンツは正確性を期していますが、内容の完全性・正確性を保証するものではありません。</p>
-            <h2 style={{ fontSize: 16, fontWeight: 700, color: "#14469e", marginBottom: 8, marginTop: 24 }}>6. プライバシーポリシーの変更</h2>
+            <h2 style={{ fontSize: 16, fontWeight: 700, color: "#0055BF", marginBottom: 8, marginTop: 24 }}>6. プライバシーポリシーの変更</h2>
             <p style={{ margin: 0 }}>本ポリシーは予告なく変更する場合があります。</p>
           </div>
         </div>
@@ -125,12 +137,12 @@ function ContactPage() {
   const isPC = width >= 768;
   const router = useRouter();
   return (
-    <div style={{ minHeight: "100vh", width: "100vw", background: "#f5f5f5", fontFamily: "'Segoe UI', sans-serif", display: "flex", flexDirection: "column" }}>
+    <div style={{ minHeight: "100vh", width: "100vw", background: "#f5f5f5", fontFamily: "'Plus Jakarta Sans', sans-serif", display: "flex", flexDirection: "column" }}>
       <Header isPC={isPC} />
       <div style={{ width: "100%", maxWidth: 800, margin: "0 auto", padding: isPC ? "32px 24px 48px" : "20px 16px 40px", flex: 1 }}>
         <div style={{ background: "#ffffff", padding: isPC ? 36 : 24, boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
-          <button onClick={() => router.push("/it")} style={{ background: "none", border: "none", color: "#14469e", cursor: "pointer", fontSize: 14, fontWeight: 600, marginBottom: 20, padding: 0 }}>← ホームに戻る / Back to Home</button>
-          <h1 style={{ fontSize: isPC ? 24 : 20, fontWeight: 800, color: "#14469e", marginBottom: 12 }}>お問い合わせ / Contact Us</h1>
+          <button onClick={() => router.push("/it")} style={{ background: "none", border: "none", color: "#0055BF", cursor: "pointer", fontSize: 14, fontWeight: 600, marginBottom: 20, padding: 0 }}>← ホームに戻る / Back to Home</button>
+          <h1 style={{ fontSize: isPC ? 24 : 20, fontWeight: 800, color: "#0055BF", marginBottom: 12 }}>お問い合わせ / Contact Us</h1>
           <p style={{ fontSize: 14, color: "#555555", lineHeight: 1.8, marginBottom: 24 }}>ご質問・ご意見はこちらからお送りください。/ Please send your questions or feedback using the form below.</p>
           <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScDkxzSlprADqEgGtR0XA3kNUofXgL-HMoXXc5yZ0KBxBhBCw/viewform?embedded=true" width="100%" height="691" frameBorder={0} style={{ border: 0 }}>読み込んでいます…</iframe>
         </div>
@@ -415,12 +427,12 @@ function UnitPage({ unitData, onBack, onComplete, unitCompleted }) {
   );
 
   return (
-    <div style={{ minHeight: "100vh", width: "100vw", background: "#f5f5f5", fontFamily: "'Segoe UI', sans-serif" }}>
+    <div style={{ minHeight: "100vh", width: "100vw", background: "#f5f5f5", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
       <Header isPC={isPC} />
       <div style={{ width: "100%", maxWidth: 1080, margin: "0 auto", padding: isPC ? "24px 24px 48px" : "16px 12px 40px" }}>
         {isPC ? <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", gap: 24, alignItems: "start" }}>{content}{sidebar}</div> : content}
       </div>
-      <style>{`@keyframes pulse{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}`}</style>
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800;900&display=swap'); @keyframes pulse{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}`}</style>
       <Footer />
     </div>
   );
@@ -440,7 +452,7 @@ function HeroSection({ onStart }: { onStart: () => void }) {
           20 units covering real IT workplace situations,<br />
           from daily standups to client communication.
         </p>
-        <button onClick={onStart} style={{ background: "#ffffff", color: "#14469e", border: "none", borderRadius: 0, padding: "14px 36px", fontSize: 16, fontWeight: 700, cursor: "pointer" }}
+        <button onClick={onStart} style={{ background: "#ffffff", color: "#0055BF", border: "none", borderRadius: 0, padding: "14px 36px", fontSize: 16, fontWeight: 700, cursor: "pointer" }}
           onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "#e8eef8"; }}
           onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "#ffffff"; }}>
           Start Learning →
@@ -453,7 +465,7 @@ function HeroSection({ onStart }: { onStart: () => void }) {
 function AboutCourse() {
   return (
     <div style={{ marginBottom: 24, padding: "18px 22px", border: "1px solid #dddddd", background: "#f8faff" }}>
-      <h3 style={{ margin: "0 0 12px", fontSize: 16, fontWeight: 700, color: "#14469e" }}>このコースについて / About This Course</h3>
+      <h3 style={{ margin: "0 0 12px", fontSize: 16, fontWeight: 700, color: "#0055BF" }}>このコースについて / About This Course</h3>
       <p style={{ margin: 0, fontSize: 14, color: "#555555", lineHeight: 1.8 }}>
         おしごとJapaneseは、ITエンジニア向けの職場日本語学習コースです。朝会での報告、コードレビュー、クライアント対応など、実際の職場で使う表現を20のユニットで学びます。JLPT N2以上を目標とする方に最適です。
       </p>
@@ -524,7 +536,8 @@ function TopPage({ onSelectUnit, progress }) {
   );
 
   return (
-    <div style={{ minHeight: "100vh", width: "100vw", background: "#f5f5f5", fontFamily: "'Segoe UI', sans-serif" }}>
+    <div style={{ minHeight: "100vh", width: "100vw", background: "#f5f5f5", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800;900&display=swap');`}</style>
       <Header isPC={isPC} />
       <HeroSection onStart={() => router.push("/it")} />
       <div id="units-section" style={{ width: "100%", maxWidth: 1080, margin: "0 auto", padding: isPC ? "24px 24px 48px" : "16px 12px 40px" }}>
