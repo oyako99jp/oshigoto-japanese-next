@@ -16,7 +16,9 @@ export default function TopPage() {
     <div style={{ background: white, fontFamily: "'Plus Jakarta Sans', sans-serif", color: black, minWidth: 0 }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Manrope:wght@800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,700,0,0&display=swap');
         * { box-sizing: border-box; }
+        .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 0, 'opsz' 24; font-style: normal; display: inline-block; line-height: 1; text-transform: none; letter-spacing: normal; word-wrap: normal; white-space: nowrap; direction: ltr; }
         .tp-nav-link { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; font-size: 14px; color: #000000; text-decoration: none; transition: color 0.1s; }
         .tp-nav-link:hover { color: #0055BF; }
         .tp-hover-shift { transition: transform 0.1s, box-shadow 0.1s; }
@@ -24,6 +26,8 @@ export default function TopPage() {
         .tp-hover-shift:active { transform: translate(2px, 2px); box-shadow: 4px 4px 0px 0px #000000; }
         .tp-course-card { transition: transform 0.2s; }
         .tp-course-card:hover { transform: translateY(-8px); }
+        .tp-feature-card { transition: transform 0.075s, box-shadow 0.075s; cursor: default; }
+        .tp-feature-card:hover { transform: translate(1px, 1px); box-shadow: none !important; }
         .tp-footer-link { font-family: 'Manrope', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; font-size: 10px; color: #000000; text-decoration: none; padding: 4px 8px; transition: background 0.1s; }
         .tp-footer-link:hover { background: #ffffff; }
         .tp-login-btn { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; font-size: 14px; color: #0055BF; border: 4px solid #0055BF; padding: 8px 24px; background: none; cursor: pointer; transition: background 0.15s, color 0.15s; }
@@ -34,6 +38,7 @@ export default function TopPage() {
           .tp-hero-grid { grid-template-columns: 1fr !important; }
           .tp-courses-grid { grid-template-columns: 1fr !important; }
           .tp-features-grid { grid-template-columns: 1fr !important; }
+          .tp-features-cards { grid-template-columns: 1fr !important; }
           .tp-cta-buttons { flex-direction: column !important; align-items: center !important; }
           .tp-nav-links { display: none !important; }
         }
@@ -67,6 +72,38 @@ export default function TopPage() {
               src="/top_kv.png"
               style={{ position: "relative", zIndex: 1, width: "100%", aspectRatio: "4/3", objectFit: "cover", border: `4px solid ${black}`, filter: "grayscale(100%)", display: "block" }}
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Section - このサイトでできること */}
+      <section id="about-section" style={{ background: white, borderTop: `4px solid ${black}`, borderBottom: `4px solid ${black}`, padding: "96px 32px" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+          {/* Centered Title */}
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 900, lineHeight: 1.1, margin: 0, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>このサイトでできること</h2>
+            <h3 style={{ fontSize: "clamp(16px, 2vw, 22px)", fontWeight: 700, margin: "8px 0 0 0", color: "#555", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>What You Can Do</h3>
+          </div>
+          {/* 2x2 Card Grid */}
+          <div className="tp-features-cards" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
+            {[
+              { color: blue, iconColor: white, icon: "menu_book", labelJP: "単語を学ぶ", labelEN: "Learn Vocabulary", desc: "各ユニットの業界特化単語を学べます。/ Learn industry-specific words for your field." },
+              { color: red, iconColor: white, icon: "forum", labelJP: "会話を練習する", labelEN: "Practice Conversations", desc: "実際の職場シーンの会話例で練習できます。/ Practice with real workplace dialogue scenes." },
+              { color: yellow, iconColor: black, icon: "quiz", labelJP: "クイズで確認する", labelEN: "Test Yourself", desc: "クイズで理解度を確認できます。/ Check your understanding with quizzes." },
+              { color: black, iconColor: white, icon: "groups", labelJP: "ロールプレイをする", labelEN: "Try Role-Play", desc: "実践的なシナリオで練習できます。/ Practice with real-world role-play scenarios." },
+            ].map(item => (
+              <div key={item.labelJP} className="tp-feature-card" style={{ border: `4px solid ${black}`, boxShadow: "8px 8px 0px 0px rgba(0,0,0,1)", background: white, padding: 32, display: "flex", gap: 24, alignItems: "flex-start" }}>
+                <div style={{ width: 56, height: 56, background: item.color, border: `4px solid ${black}`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <span className="material-symbols-outlined" style={{ color: item.iconColor, fontSize: 30 }}>{item.icon}</span>
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                  <p style={{ fontWeight: 900, fontSize: 18, lineHeight: 1.2, margin: 0, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    {item.labelJP} <span style={{ fontSize: 13, fontWeight: 700, opacity: 0.6 }}>{item.labelEN}</span>
+                  </p>
+                  <p style={{ fontWeight: 500, fontSize: 14, lineHeight: 1.7, margin: 0 }}>{item.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -110,44 +147,6 @@ export default function TopPage() {
               </div>
               <div style={{ color: black, fontWeight: 900, opacity: 0.3, textAlign: "right", fontSize: 20 }}>04</div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features/Editorial Section */}
-      <section id="about-section" className="tp-features-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: `4px solid ${black}` }}>
-        <div style={{ padding: 64, display: "flex", flexDirection: "column", justifyContent: "center", borderRight: `4px solid ${black}`, background: white }}>
-          <h3 style={{ fontSize: 36, fontWeight: 900, marginBottom: 24, textTransform: "uppercase", lineHeight: 1.1, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>NOT TEXTBOOK.<br />REAL WORKPLACE.</h3>
-          <p style={{ fontSize: 20, fontWeight: 700, marginBottom: 32, lineHeight: 1.8 }}>
-            Most Japanese courses teach you to order coffee.<br />
-            We teach you the Japanese your colleagues<br />
-            actually use — built for your industry.<br />
-            <br />
-            職場で即使える日本語を、<br />
-            業界別に学べるコースです。
-          </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            {[
-              { color: blue, label: "Industry Specific Curriculum" },
-              { color: red, label: "Real-world Business Scenarios" },
-              { color: yellow, label: "Free to Start, Easy to Use" },
-            ].map(item => (
-              <div key={item.label} style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                <div style={{ width: 32, height: 32, background: item.color, border: `2px solid ${black}`, flexShrink: 0 }} />
-                <span style={{ fontWeight: 900, fontSize: 13, textTransform: "uppercase", letterSpacing: "0.1em" }}>{item.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div style={{ position: "relative", minHeight: 500 }}>
-          <img
-            alt="Students studying"
-            src="/top_2.png"
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(100%)" }}
-          />
-          <div style={{ position: "absolute", inset: 0, background: "rgba(0,85,191,0.2)", mixBlendMode: "multiply" }} />
-          <div style={{ position: "absolute", bottom: 48, left: 48, right: 48, background: white, border: `4px solid ${black}`, padding: 32, boxShadow: shadowBlack }}>
-            <p style={{ fontSize: 22, fontWeight: 900, fontStyle: "italic", margin: 0 }}>"THE MOST DIRECT PATH TO WORKING IN JAPAN."</p>
           </div>
         </div>
       </section>
