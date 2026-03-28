@@ -375,9 +375,9 @@ function HeroSection({ onStart }: { onStart: () => void }) {
       <div style={{ maxWidth: 1080, margin: "0 auto", position: "relative" }}>
         <h2 style={{ margin: "0 0 16px", fontSize: 32, fontWeight: 800, color: "#ffffff" }}>Japanese for Job Interviews</h2>
         <p style={{ margin: "0 0 32px", fontSize: 16, color: "rgba(255,255,255,0.85)", lineHeight: 1.8 }}>
-          就職・転職面接で使う日本語を学べます。<br />
-          10のユニットで面接の準備を完全サポート。<br />
-          自己PRから給与交渉まで徹底的に学習。
+          Learn the Japanese you actually need to get the job.<br />
+          10 units covering every stage of the Japanese job interview,<br />
+          from your resume to salary negotiation.
         </p>
         <button onClick={onStart} style={{ background: "#ffffff", color: "#e61923", border: "none", borderRadius: 0, padding: "14px 36px", fontSize: 16, fontWeight: 700, cursor: "pointer" }}
           onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "#fce4e6"; }}
