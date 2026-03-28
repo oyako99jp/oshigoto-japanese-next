@@ -126,13 +126,14 @@ export default function TopPage() {
               <button className="tp-enroll-btn" onClick={() => router.push("/it")}>受講する</button>
             </div>
             {/* Interview & Career */}
-            <div className="tp-course-card" style={{ border: `4px solid ${black}`, background: red, padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 400, boxShadow: shadowBlack, opacity: 0.9 }}>
+            <div className="tp-course-card" onClick={() => router.push("/interview")} style={{ border: `4px solid ${black}`, background: red, padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 400, boxShadow: shadowBlack, cursor: "pointer" }}>
               <div>
-                <span style={{ background: black, color: white, fontSize: 11, fontWeight: 900, letterSpacing: "0.1em", padding: "4px 12px", border: `2px solid ${white}`, textTransform: "uppercase", marginBottom: 24, display: "inline-block" }}>COMING SOON</span>
+                <span style={{ background: white, color: red, fontSize: 11, fontWeight: 900, letterSpacing: "0.1em", padding: "4px 12px", border: `2px solid ${black}`, textTransform: "uppercase", marginBottom: 24, display: "inline-block" }}>公開中</span>
                 <h3 style={{ fontSize: 32, fontWeight: 900, color: white, lineHeight: 1.2, marginBottom: 8, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>面接の日本語</h3>
                 <p style={{ fontSize: 14, fontWeight: 500, color: white, margin: "0 0 16px", letterSpacing: "0.05em" }}>INTERVIEW JAPANESE</p>
+                <p style={{ fontSize: 13, fontWeight: 500, color: white, lineHeight: 1.7, margin: 0, opacity: 0.9 }}>10 units · Job interviews · Keigo & manner</p>
               </div>
-              <div style={{ color: white, fontWeight: 900, opacity: 0.5, textAlign: "right", fontSize: 20 }}>02</div>
+              <button className="tp-enroll-btn" onClick={() => router.push("/interview")}>受講する</button>
             </div>
             {/* Travel */}
             <div className="tp-course-card" style={{ border: `4px solid ${black}`, background: yellow, padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 400, boxShadow: shadowBlack, opacity: 0.9 }}>
