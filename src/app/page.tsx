@@ -131,7 +131,7 @@ export default function TopPage() {
                 <span style={{ background: white, color: red, fontSize: 11, fontWeight: 900, letterSpacing: "0.1em", padding: "4px 12px", border: `2px solid ${black}`, textTransform: "uppercase", marginBottom: 24, display: "inline-block" }}>公開中</span>
                 <h3 style={{ fontSize: 32, fontWeight: 900, color: white, lineHeight: 1.2, marginBottom: 8, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>面接の日本語</h3>
                 <p style={{ fontSize: 14, fontWeight: 500, color: white, margin: "0 0 16px", letterSpacing: "0.05em" }}>INTERVIEW JAPANESE</p>
-                <p style={{ fontSize: 13, fontWeight: 500, color: white, lineHeight: 1.7, margin: 0, opacity: 0.9 }}>10 units · Job interviews · Keigo & manner</p>
+                <p style={{ fontSize: 13, fontWeight: 500, color: white, lineHeight: 1.7, margin: 0, opacity: 0.9 }}>履歴書・自己PR・よくある質問など、面接で即使える日本語を学べます。Interview Japanese for job seekers in Japan.</p>
               </div>
               <button className="tp-enroll-btn" onClick={() => router.push("/interview")}>受講する</button>
             </div>
