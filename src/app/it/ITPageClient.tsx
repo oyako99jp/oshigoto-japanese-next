@@ -41,18 +41,6 @@ const checkAnswer = (input, correct, variants) => {
 
 // ============================================================
 // SHARED COMPONENTS
-// ============================================================
-function AdBanner({ horizontal = false }) {
-  return (
-    <div style={{ border: `2px dashed ${colors.primaryLight}`, borderRadius: 0, background: colors.primaryBg, display: "flex", flexDirection: horizontal ? "row" : "column", alignItems: "center", justifyContent: "center", padding: horizontal ? "12px 20px" : "28px 16px", color: colors.primaryLight, textAlign: "center", gap: 10, minHeight: horizontal ? 60 : 220 }}>
-      <div style={{ fontSize: 12, fontWeight: 700, color: colors.primaryLight }}>AD</div>
-      <div>
-        <div style={{ fontSize: 12, fontWeight: 700, color: colors.primaryLight }}>Advertisement</div>
-        <div style={{ fontSize: 10, color: colors.gray }}>Google AdSense · {horizontal ? "320×50" : "300×250"}</div>
-      </div>
-    </div>
-  );
-}
 
 function SectionTab({ sections, active, onChange, isPC }) {
   return (
@@ -417,10 +405,6 @@ function UnitPage({ unitData, onBack, onComplete, unitCompleted }) {
 
   const sidebar = (
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-      <div style={{ background: colors.white, borderRadius: 0, padding: 20, boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
-        <div style={{ fontSize: 11, fontWeight: 600, color: colors.textLight, marginBottom: 12, letterSpacing: 1 }}>SPONSORED</div>
-        <AdBanner />
-      </div>
       <div style={{ background: colors.white, borderRadius: 0, padding: 20, boxShadow: "0 2px 12px rgba(0,0,0,0.07)" }}>
         <h3 style={{ margin: "0 0 14px", fontSize: 14, fontWeight: 700, color: colors.text }}>Unit {unitData.id} Contents</h3>
         {sections.map(s => (
@@ -517,7 +501,6 @@ function TopPage({ onSelectUnit, progress }) {
         </div>
         <div style={{ textAlign: "right", marginTop: 4, fontSize: 12, color: colors.textLight }}>{pct}% complete</div>
       </div>
-      {!isPC && <div style={{ marginBottom: 20 }}><div style={{ fontSize: 11, fontWeight: 600, color: colors.textLight, marginBottom: 8, letterSpacing: 1 }}>SPONSORED</div><AdBanner horizontal /></div>}
       <h2 style={{ fontSize: 15, fontWeight: 700, color: colors.text, marginBottom: 14, marginTop: 0 }}>Units — IT Industry</h2>
       <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
         {units.map(u => <UnitCard key={u.id} unit={u} />)}
@@ -527,10 +510,6 @@ function TopPage({ onSelectUnit, progress }) {
 
   const sidebar = (
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-      <div style={{ background: colors.white, borderRadius: 0, padding: 20, boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
-        <div style={{ fontSize: 11, fontWeight: 600, color: colors.textLight, marginBottom: 12, letterSpacing: 1 }}>SPONSORED</div>
-        <AdBanner />
-      </div>
       <div style={{ background: colors.white, borderRadius: 0, padding: 20, boxShadow: "0 2px 12px rgba(0,0,0,0.07)" }}>
         <h3 style={{ margin: "0 0 16px", fontSize: 14, fontWeight: 700, color: colors.text }}>Stats</h3>
         {[{ label: "Completed", value: progress.completed.length, color: "#22c55e" }, { label: "Remaining", value: 20 - progress.completed.length, color: colors.primaryLight }, { label: "Total Units", value: 20, color: colors.gray }].map(s => (
