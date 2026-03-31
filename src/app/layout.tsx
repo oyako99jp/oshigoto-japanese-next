@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://oshigoto-japanese.com",
   },
+  verification: {
+    google: "osN5zt1aBHbevua90GjiZ4EXqMLk9Qhfu5kSa2rd8Nw",
+  },
 };
 
 export default function RootLayout({
