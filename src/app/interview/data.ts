@@ -75,7 +75,7 @@ export const unit1Data = {
     {
       key: "B",
       label: "書類の内容説明",
-      descJp: "面接官から「職務経歴書について教えてください」と言われました。自分の経歴を説明してください。",
+      descJp: "面接官から「職務経歴について教えてください」と言われました。自分の経歴を説明してください。",
       desc: "The interviewer asks you to explain your work history document. Describe your background.",
       points: [
         "職務経歴書の内容を口頭で説明する",
@@ -120,7 +120,7 @@ export const unit2Data = {
         { speaker: "面接官", role: "Interviewer", jp: "転職を考えたきっかけは何ですか？", en: "What made you consider changing jobs?" },
         { speaker: "Alex", role: "You", jp: "現職では多くのことを学びましたが、より大きな規模のプロジェクトに携わりたいという気持ちが強くなりました。", en: "I've learned a great deal at my current job, but I've developed a strong desire to be involved in larger-scale projects." },
         { speaker: "面接官", role: "Interviewer", jp: "そういう意味では、弊社のプロジェクト規模はいかがですか？", en: "In that sense, how do you find our company's project scale?" },
-        { speaker: "Alex", role: "You", jp: "御社のプロジェクトは国内外に及ぶ大規模なものが多く、自分の挑戦心を活かせると確信しています。", en: "I'm confident that your company's many large-scale projects, both domestic and international, will allow me to put my spirit of challenge to use." },
+        { speaker: "Alex", role: "You", jp: "プロジェクトは国内外に及ぶ大規模なものが多く、自分の挑戦心を活かせると確信しています。", en: "I'm confident that the many large-scale projects, both domestic and international, will allow me to put my spirit of challenge to use." },
       ]
     },
   ],
@@ -147,7 +147,7 @@ export const unit2Data = {
     {
       key: "B",
       label: "転職理由と結びつける",
-      descJp: "「なぜ転職を考えましたか？」という質問に答え、その理由と御社への志望動機を結びつけてください。",
+      descJp: "「なぜ転職を考えましたか？」という質問に答え、その理由と志望動機を結びつけてください。",
       desc: "Answer 'Why did you consider changing jobs?' and connect your answer to your motivation for this company.",
       points: [
         "ネガティブな転職理由をポジティブに言い換える",
@@ -356,7 +356,7 @@ export const unit5Data = {
       points: [
         "「〜に感謝しているが、さらに〜したい」という構造を使う",
         "前向きな理由（成長・挑戦）を中心に話す",
-        "御社への志望動機と結びつける",
+        "志望動機と結びつける",
       ]
     },
     {
@@ -411,10 +411,10 @@ export const unit6Data = {
     },
   ],
   quiz: [
-    { id: 1, question: "「自分の弱点」を意味する言葉は？", hint: "Weaknesses / shortcomings", choices: ["長所", "短所", "改善点", "弱み"], answer: "短所" },
+    { id: 1, question: "「自分の弱点」を意味する言葉は？", hint: "Weaknesses / shortcomings", choices: ["長所", "短所", "改善点", "欠点"], answer: "短所" },
     { id: 2, question: "「弱点を乗り越える」という動詞は？", hint: "To overcome", choices: ["改善する", "克服する", "解決する", "修正する"], answer: "克服する" },
     { id: 3, question: "「チームで協力して仕事をすること」は？", hint: "Teamwork / team play", choices: ["コミュニケーション", "チームプレー", "協調性", "リーダーシップ"], answer: "チームプレー" },
-    { id: 4, question: "「問題や課題に積極的に___」と言います。", hint: "To tackle / work on", choices: ["取り組む", "向き合う", "対処する", "解決する"], answer: "取り組む" },
+    { id: 4, question: "「問題や課題に積極的に___」と言います。", hint: "To tackle / work on", choices: ["取り組む", "挑む", "努力する", "解決する"], answer: "取り組む" },
   ],
   answerVariants: {},
   quizTip: "短所の答え方は「短所→改善努力中」という流れが重要です。",
@@ -450,7 +450,7 @@ export const unit7Data = {
   title: "よくある質問③",
   titleEn: "Common Interview Questions Part 3",
   vocab: [
-    { id: 1, jp: "将来の目標", reading: "しょうらいのもくひょう", en: "future goals", example: "5年後の将来の目標は何ですか？", exampleEn: "What are your future goals in 5 years?" },
+    { id: 1, jp: "将来の目標", reading: "しょうらいのもくひょう", en: "goal", example: "5年後の目標は何ですか？", exampleEn: "What is your goal for 5 years from now?" },
     { id: 2, jp: "キャリアパス", reading: "きゃりあぱす", en: "career path", example: "どのようなキャリアパスを描いていますか？", exampleEn: "What kind of career path are you envisioning?" },
     { id: 3, jp: "ビジョン", reading: "びじょん", en: "vision", example: "10年後のビジョンを教えてください。", exampleEn: "Please tell us your vision for 10 years from now." },
     { id: 4, jp: "専門家", reading: "せんもんか", en: "expert / specialist", example: "AIの専門家になりたいです。", exampleEn: "I want to become an AI expert." },
@@ -483,9 +483,9 @@ export const unit7Data = {
   ],
   quiz: [
     { id: 1, question: "「将来どんな道を進むか」の計画を何といいますか？", hint: "Career path", choices: ["キャリアアップ", "キャリアパス", "ビジョン", "目標"], answer: "キャリアパス" },
-    { id: 2, question: "「特定の分野で深い知識を持つ人」を何といいますか？", hint: "Expert / specialist", choices: ["スペシャリスト", "専門家", "マネージャー", "リーダー"], answer: "専門家" },
+    { id: 2, question: "「特定の分野で深い知識を持つ人」を何といいますか？", hint: "Expert / specialist", choices: ["プロ", "専門家", "マネージャー", "リーダー"], answer: "専門家" },
     { id: 3, question: "「スキルを習得する」という表現は？", hint: "To acquire / master", choices: ["学ぶ", "覚える", "身につける", "習う"], answer: "身につける" },
-    { id: 4, question: "「多様な分野にまたがる経験」を___経験といいます。", hint: "Wide-ranging", choices: ["深い", "幅広い", "豊富な", "多様な"], answer: "幅広い" },
+    { id: 4, question: "「多様な分野にまたがる経験」を___経験といいます。", hint: "Wide-ranging", choices: ["深い", "幅広い", "長い", "高い"], answer: "幅広い" },
   ],
   answerVariants: {},
   quizTip: "将来のビジョンは「個人の成長」と「会社への貢献」の両方を含めると効果的です。",
@@ -493,7 +493,7 @@ export const unit7Data = {
     {
       key: "A",
       label: "5年後のキャリアビジョン",
-      descJp: "「5年後はどのようなエンジニアになりたいですか？」という質問に答えてください。",
+      descJp: "「5年後はどのようなエンジニアになっていたいですか？」という質問に答えてください。",
       desc: "Answer 'What kind of engineer do you want to be in 5 years?'",
       points: [
         "具体的な役職・スキルを伝える",
@@ -521,7 +521,7 @@ export const unit8Data = {
   title: "逆質問",
   titleEn: "Questions to Ask the Interviewer",
   vocab: [
-    { id: 1, jp: "逆質問", reading: "ぎゃくしつもん", en: "questions from the candidate to the interviewer", example: "逆質問はありますか？", exampleEn: "Do you have any questions for us?" },
+    { id: 1, jp: "逆質問", reading: "ぎゃくしつもん", en: "questions from the candidate to the interviewer", example: "逆質問を事前に準備する", exampleEn: "to prepare questions in advance" },
     { id: 2, jp: "入社後", reading: "にゅうしゃご", en: "after joining / after starting", example: "入社後はどのようなプロジェクトに携わりますか？", exampleEn: "What projects will I be involved in after joining?" },
     { id: 3, jp: "研修制度", reading: "けんしゅうせいど", en: "training / onboarding system", example: "研修制度について教えてください。", exampleEn: "Could you tell me about your training system?" },
     { id: 4, jp: "評価制度", reading: "ひょうかせいど", en: "performance evaluation system", example: "評価制度はどのようになっていますか？", exampleEn: "How does your performance evaluation system work?" },
@@ -530,7 +530,7 @@ export const unit8Data = {
     { id: 7, jp: "裁量", reading: "さいりょう", en: "discretion / autonomy", example: "仕事の裁量はどのくらいありますか？", exampleEn: "How much autonomy is there in the work?" },
     { id: 8, jp: "キャリア形成", reading: "きゃりあけいせい", en: "career development", example: "キャリア形成のサポートはありますか？", exampleEn: "Is there support for career development?" },
     { id: 9, jp: "課題", reading: "かだい", en: "challenge / issue (for the team/company)", example: "現在チームが抱えている課題は何ですか？", exampleEn: "What challenges is the team currently facing?" },
-    { id: 10, jp: "入社を決める", reading: "にゅうしゃをきめる", en: "to decide to join", example: "御社に入社を決めた理由は何ですか？", exampleEn: "What made you decide to join this company?" },
+    { id: 10, jp: "入社を決める", reading: "にゅうしゃをきめる", en: "to decide to join", example: "最終的に今の会社に入社を決めた", exampleEn: "I decided to join my current company in the end." },
   ],
   conversations: [
     {
@@ -576,7 +576,7 @@ export const unit8Data = {
     {
       key: "B",
       label: "NG質問を避ける",
-      descJp: "逆質問でNG（不適切）な質問を避け、適切な質問だけを選んでください。",
+      descJp: "逆質問でNG（不適切）な質問を避け、適切な質問をしてください。",
       desc: "Avoid inappropriate questions and choose only appropriate ones for your reverse questions.",
       points: [
         "給与・残業時間は最初に聞かない",
@@ -602,7 +602,7 @@ export const unit9Data = {
     { id: 7, jp: "おります", reading: "おります", en: "to be (humble form of いる)", example: "現在、転職活動をしております。", exampleEn: "I am currently job hunting." },
     { id: 8, jp: "いたします", reading: "いたします", en: "to do (humble form of する)", example: "よろしくお願いいたします。", exampleEn: "I look forward to working with you." },
     { id: 9, jp: "ございます", reading: "ございます", en: "there is / to be (polite form of ある)", example: "ご質問がございましたらどうぞ。", exampleEn: "Please feel free if you have any questions." },
-    { id: 10, jp: "失礼いたします", reading: "しつれいいたします", en: "excuse me (very polite)", example: "失礼いたします、入ってよろしいですか？", exampleEn: "Excuse me, may I come in?" },
+    { id: 10, jp: "失礼いたします", reading: "しつれいいたします", en: "excuse me (very polite)", example: "失礼いたします。入ってよろしいでしょうか。", exampleEn: "Excuse me, may I come in?" },
   ],
   conversations: [
     {
@@ -626,7 +626,7 @@ export const unit9Data = {
     },
   ],
   quiz: [
-    { id: 1, question: "「私はITエンジニアです」を謙譲語で言うと？", hint: "Humble form of いる → おります", choices: ["私はITエンジニアでいます。", "私はITエンジニアでおります。", "私はITエンジニアでございます。", "私はITエンジニアになります。"], answer: "私はITエンジニアでおります。" },
+    { id: 1, question: "「私はITエンジニアです」を謙譲語で言うと？", hint: "Humble form of いる → おります", choices: ["私はITエンジニアでいます。", "私はITエンジニアです。", "私はITエンジニアでございます。", "私はITエンジニアになります。"], answer: "私はITエンジニアです。" },
     { id: 2, question: "「〜をする」の謙譲語は？", hint: "Humble form of する", choices: ["される", "いたします", "なさいます", "します"], answer: "いたします" },
     { id: 3, question: "「名前を言う」の謙譲語は？", hint: "Humble form of 言う", choices: ["言います", "おっしゃいます", "申します", "ございます"], answer: "申します" },
     { id: 4, question: "部屋に入る前に何回ノックするのが正式なマナーですか？", hint: "Standard business etiquette", choices: ["1回", "2回", "3回", "4回"], answer: "3回" },
@@ -674,7 +674,7 @@ export const unit10Data = {
     { id: 7, jp: "休日", reading: "きゅうじつ", en: "days off / holiday", example: "年間の休日は何日ですか？", exampleEn: "How many days off are there per year?" },
     { id: 8, jp: "試用期間", reading: "しようきかん", en: "probationary period", example: "試用期間は3か月間です。", exampleEn: "The probationary period is 3 months." },
     { id: 9, jp: "入社日", reading: "にゅうしゃび", en: "start date / joining date", example: "入社日はいつになりますか？", exampleEn: "When would the start date be?" },
-    { id: 10, jp: "交渉する", reading: "こうしょうする", en: "to negotiate", example: "給与の交渉をしたいです。", exampleEn: "I would like to negotiate the salary." },
+    { id: 10, jp: "有給休暇", reading: "ゆうきゅうきゅうか", en: "paid leave / paid vacation", example: "有給休暇を取得する", exampleEn: "to take paid leave" },
   ],
   conversations: [
     {
@@ -702,7 +702,7 @@ export const unit10Data = {
     { id: 1, question: "月額給与ではなく1年間の合計収入を何といいますか？", hint: "Annual income", choices: ["月給", "基本給", "年収", "手取り"], answer: "年収" },
     { id: 2, question: "「交通費や住宅費などの補助」を何といいますか？", hint: "Allowance / benefit", choices: ["給与", "手当", "福利厚生", "ボーナス"], answer: "手当" },
     { id: 3, question: "「正式採用前の試しの期間」を何といいますか？", hint: "Probationary period", choices: ["試用期間", "研修期間", "準備期間", "待機期間"], answer: "試用期間" },
-    { id: 4, question: "「条件面で話し合って決める」という動詞は？", hint: "To negotiate", choices: ["確認する", "相談する", "交渉する", "検討する"], answer: "交渉する" },
+    { id: 4, question: "「会社に認められた休暇で、給与が支払われる休み」は？", hint: "Paid time off", choices: ["有給休暇", "欠勤", "残業", "休日出勤"], answer: "有給休暇" },
   ],
   answerVariants: {},
   quizTip: "給与交渉は最終選考後、内定後が適切なタイミングです。",
