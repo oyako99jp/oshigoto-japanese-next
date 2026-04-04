@@ -450,7 +450,7 @@ export const unit7Data = {
   title: "よくある質問③",
   titleEn: "Common Interview Questions Part 3",
   vocab: [
-    { id: 1, jp: "将来の目標", reading: "しょうらいのもくひょう", en: "goal", example: "5年後の目標は何ですか？", exampleEn: "What is your goal for 5 years from now?" },
+    { id: 1, jp: "目標", reading: "もくひょう", en: "goal", example: "5年後の目標は何ですか？", exampleEn: "What is your goal for 5 years from now?" },
     { id: 2, jp: "キャリアパス", reading: "きゃりあぱす", en: "career path", example: "どのようなキャリアパスを描いていますか？", exampleEn: "What kind of career path are you envisioning?" },
     { id: 3, jp: "ビジョン", reading: "びじょん", en: "vision", example: "10年後のビジョンを教えてください。", exampleEn: "Please tell us your vision for 10 years from now." },
     { id: 4, jp: "専門家", reading: "せんもんか", en: "expert / specialist", example: "AIの専門家になりたいです。", exampleEn: "I want to become an AI expert." },
@@ -602,7 +602,7 @@ export const unit9Data = {
     { id: 7, jp: "おります", reading: "おります", en: "to be (humble form of いる)", example: "現在、転職活動をしております。", exampleEn: "I am currently job hunting." },
     { id: 8, jp: "いたします", reading: "いたします", en: "to do (humble form of する)", example: "よろしくお願いいたします。", exampleEn: "I look forward to working with you." },
     { id: 9, jp: "ございます", reading: "ございます", en: "there is / to be (polite form of ある)", example: "ご質問がございましたらどうぞ。", exampleEn: "Please feel free if you have any questions." },
-    { id: 10, jp: "失礼いたします", reading: "しつれいいたします", en: "excuse me (very polite)", example: "失礼いたします。入ってよろしいでしょうか。", exampleEn: "Excuse me, may I come in?" },
+    { id: 10, jp: "失礼いたします", reading: "しつれいいたします", en: "excuse me (very polite)", example: "失礼いたします。入ってもよろしいでしょうか。", exampleEn: "Excuse me, may I come in?" },
   ],
   conversations: [
     {
@@ -626,7 +626,7 @@ export const unit9Data = {
     },
   ],
   quiz: [
-    { id: 1, question: "「私はITエンジニアです」を謙譲語で言うと？", hint: "Humble form of いる → おります", choices: ["私はITエンジニアでいます。", "私はITエンジニアです。", "私はITエンジニアでございます。", "私はITエンジニアになります。"], answer: "私はITエンジニアです。" },
+    { id: 1, question: "「私はITエンジニアです」を謙譲語で言うと？", hint: "Humble form of いる → おります", choices: ["私はITエンジニアでいます。", "私はITエンジニアです。", "私はITエンジニアをしています。", "私はITエンジニアになります。"], answer: "私はITエンジニアです。" },
     { id: 2, question: "「〜をする」の謙譲語は？", hint: "Humble form of する", choices: ["される", "いたします", "なさいます", "します"], answer: "いたします" },
     { id: 3, question: "「名前を言う」の謙譲語は？", hint: "Humble form of 言う", choices: ["言います", "おっしゃいます", "申します", "ございます"], answer: "申します" },
     { id: 4, question: "部屋に入る前に何回ノックするのが正式なマナーですか？", hint: "Standard business etiquette", choices: ["1回", "2回", "3回", "4回"], answer: "3回" },
