@@ -379,11 +379,6 @@ function HeroSection({ onStart }: { onStart: () => void }) {
           10 units covering every stage of the Japanese job interview,<br />
           from your resume to salary negotiation.
         </p>
-        <button onClick={onStart} style={{ background: "#ffffff", color: "#e61923", border: "none", borderRadius: 0, padding: "14px 36px", fontSize: 16, fontWeight: 700, cursor: "pointer" }}
-          onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "#fce4e6"; }}
-          onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "#ffffff"; }}>
-          Start Learning →
-        </button>
       </div>
     </div>
   );

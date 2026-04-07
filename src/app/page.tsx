@@ -139,7 +139,7 @@ export default function TopPage() {
             <div className="tp-course-card" style={{ border: `4px solid ${black}`, background: yellow, padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 400, boxShadow: shadowBlack, opacity: 0.9 }}>
               <div>
                 <span style={{ background: black, color: white, fontSize: 11, fontWeight: 900, letterSpacing: "0.1em", padding: "4px 12px", border: `2px solid ${white}`, textTransform: "uppercase", marginBottom: 24, display: "inline-block" }}>COMING SOON</span>
-                <h3 style={{ fontSize: 40, fontWeight: 900, color: black, lineHeight: 1.1, marginBottom: 16, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>TRAVEL<br />JAPAN</h3>
+                <h3 style={{ fontSize: 40, fontWeight: 900, color: black, lineHeight: 1.1, marginBottom: 16, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>仕事で使う<br />カタカナ語</h3>
               </div>
               <div style={{ color: black, fontWeight: 900, opacity: 0.3, textAlign: "right", fontSize: 20 }}>03</div>
             </div>

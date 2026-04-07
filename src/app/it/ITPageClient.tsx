@@ -451,11 +451,6 @@ function HeroSection({ onStart }: { onStart: () => void }) {
           20 units covering real IT workplace situations,<br />
           from daily standups to client communication.
         </p>
-        <button onClick={onStart} style={{ background: "#ffffff", color: "#0055BF", border: "none", borderRadius: 0, padding: "14px 36px", fontSize: 16, fontWeight: 700, cursor: "pointer" }}
-          onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "#e8eef8"; }}
-          onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "#ffffff"; }}>
-          Start Learning →
-        </button>
       </div>
     </div>
   );
