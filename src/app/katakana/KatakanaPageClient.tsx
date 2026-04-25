@@ -38,16 +38,20 @@ function useWindowWidth() {
 }
 
 const colors = {
-  primary: "#0055BF",
-  primaryLight: "#0055BF",
-  primaryBg: "#e8f0ff",
-  accent: "#E3000B",
-  text: "#000000",
-  textLight: "#555555",
+  // Base palette
+  yellow: "#FFD500",
+  blue: "#0055BF",
+  black: "#000000",
+  white: "#ffffff",
   gray: "#555555",
   grayLight: "#e0e0e0",
   grayBg: "#f5f5f5",
-  white: "#ffffff",
+  // Semantic
+  primary: "#FFD500",    // yellow — header bg, KV, badges
+  primaryBg: "#fffde6",  // light yellow — panel/card backgrounds
+  accent: "#0055BF",     // blue — buttons, links, active states
+  text: "#000000",
+  textLight: "#555555",
 };
 
 // ============================================================
@@ -56,13 +60,55 @@ const colors = {
 function Header({ isPC }: { isPC: boolean }) {
   const router = useRouter();
   return (
-    <div style={{ width: "100%", background: colors.primary, color: colors.white }}>
-      <div style={{ maxWidth: 1080, margin: "0 auto", padding: isPC ? "18px 24px" : "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+    <div style={{ width: "100%", background: colors.yellow, borderBottom: `3px solid ${colors.black}` }}>
+      <div style={{ maxWidth: 1080, margin: "0 auto", padding: isPC ? "16px 24px" : "12px 16px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <div>
-          <h1 style={{ margin: 0, fontSize: isPC ? 22 : 18, fontWeight: 800 }}>仕事のカタカナ語</h1>
-          <p style={{ margin: 0, opacity: 0.85, fontSize: isPC ? 14 : 12 }}>Business Katakana Words — おしごとJAPANESE</p>
+          <div style={{ fontSize: isPC ? 20 : 16, fontWeight: 900, color: colors.black, letterSpacing: "0.02em" }}>仕事のカタカナ語</div>
+          <div style={{ fontSize: isPC ? 12 : 11, color: colors.black, opacity: 0.65, fontWeight: 600, letterSpacing: "0.08em" }}>おしごとJAPANESE</div>
         </div>
-        <button onClick={() => router.push("/")} style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)", color: colors.white, cursor: "pointer", fontSize: 13, padding: "6px 14px", fontWeight: 600 }}>← Home</button>
+        <button
+          onClick={() => router.push("/")}
+          style={{ background: "none", border: `2px solid ${colors.black}`, color: colors.black, cursor: "pointer", fontSize: 13, padding: "6px 14px", fontWeight: 700 }}
+        >
+          ← Home
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function HeroSection({ isPC }: { isPC: boolean }) {
+  return (
+    <div style={{
+      width: "100%",
+      backgroundColor: colors.yellow,
+      borderBottom: `3px solid ${colors.black}`,
+      padding: isPC ? "64px 24px" : "40px 16px",
+      textAlign: "center",
+      position: "relative",
+      overflow: "hidden",
+    }}>
+      {/* KV image — shows when /katakana_kv.png is added to /public */}
+      <img
+        src="/katakana_kv.png"
+        alt=""
+        aria-hidden="true"
+        onError={(e) => { e.currentTarget.style.display = "none"; }}
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.25, display: "block" }}
+      />
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 1080, margin: "0 auto" }}>
+        <div style={{ display: "inline-block", background: colors.blue, color: colors.white, fontSize: 11, fontWeight: 900, letterSpacing: "0.15em", padding: "4px 14px", border: `2px solid ${colors.black}`, textTransform: "uppercase", marginBottom: 20 }}>
+          Business Katakana
+        </div>
+        <h2 style={{ margin: "0 0 10px", fontSize: isPC ? 42 : 28, fontWeight: 900, color: colors.black, fontFamily: "'Plus Jakarta Sans', sans-serif", letterSpacing: "-0.02em" }}>
+          仕事のカタカナ語
+        </h2>
+        <p style={{ margin: "0 0 12px", fontSize: isPC ? 16 : 13, fontWeight: 700, color: colors.black, letterSpacing: "0.1em" }}>
+          Business Katakana Words
+        </p>
+        <p style={{ margin: 0, fontSize: isPC ? 14 : 12, color: colors.black, opacity: 0.7, lineHeight: 1.8 }}>
+          職場でよく使うカタカナ語を学べます。単語・クイズで実践的に練習できます。
+        </p>
       </div>
     </div>
   );
@@ -71,7 +117,7 @@ function Header({ isPC }: { isPC: boolean }) {
 function Footer() {
   const router = useRouter();
   return (
-    <div style={{ width: "100%", background: "#111111", color: "#ffffff" }}>
+    <div style={{ width: "100%", background: colors.black, color: colors.white }}>
       <div style={{ maxWidth: 1080, margin: "0 auto", padding: "24px", textAlign: "center" }}>
         <div style={{ fontSize: 13, marginBottom: 12 }}>© おしごとJapanese</div>
         <div style={{ display: "flex", gap: 24, justifyContent: "center" }}>
@@ -86,9 +132,15 @@ function Footer() {
 
 function SectionTab({ sections, active, onChange, isPC }: { sections: { id: string; label: string }[]; active: string; onChange: (id: string) => void; isPC: boolean }) {
   return (
-    <div style={{ borderBottom: "2px solid #dddddd", display: "flex", gap: 0, marginBottom: 24, overflowX: "auto", overflowY: "hidden", WebkitOverflowScrolling: "touch", whiteSpace: "nowrap" }}>
+    <div style={{ borderBottom: `2px solid ${colors.grayLight}`, display: "flex", gap: 0, marginBottom: 24, overflowX: "auto", overflowY: "hidden", WebkitOverflowScrolling: "touch", whiteSpace: "nowrap" }}>
       {sections.map(s => (
-        <button key={s.id} onClick={() => onChange(s.id)} style={{ background: "none", border: "none", borderBottom: active === s.id ? `2px solid ${colors.primary}` : "2px solid transparent", marginBottom: -2, padding: "10px 20px", fontWeight: active === s.id ? 700 : 400, color: active === s.id ? colors.primary : colors.gray, cursor: "pointer", fontSize: isPC ? 13 : 12, display: "inline-block", whiteSpace: "nowrap", flexShrink: 0 }}>{s.label}</button>
+        <button
+          key={s.id}
+          onClick={() => onChange(s.id)}
+          style={{ background: "none", border: "none", borderBottom: active === s.id ? `2px solid ${colors.accent}` : "2px solid transparent", marginBottom: -2, padding: "10px 20px", fontWeight: active === s.id ? 700 : 400, color: active === s.id ? colors.accent : colors.gray, cursor: "pointer", fontSize: isPC ? 13 : 12, display: "inline-block", whiteSpace: "nowrap", flexShrink: 0 }}
+        >
+          {s.label}
+        </button>
       ))}
     </div>
   );
@@ -100,16 +152,19 @@ function SectionTab({ sections, active, onChange, isPC }: { sections: { id: stri
 function VocabCard({ word, index }: { word: { id: number; jp: string; reading: string; en: string; example: string; exampleEn: string }; index: number }) {
   const [flipped, setFlipped] = useState(false);
   return (
-    <div onClick={() => setFlipped(f => !f)} style={{ background: flipped ? colors.primaryBg : colors.white, border: `1px solid ${flipped ? colors.primaryLight : colors.grayLight}`, borderRadius: 0, padding: "16px 18px", cursor: "pointer", transition: "all 0.2s", boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }}>
+    <div
+      onClick={() => setFlipped(f => !f)}
+      style={{ background: flipped ? colors.primaryBg : colors.white, border: `1px solid ${flipped ? colors.accent : colors.grayLight}`, borderRadius: 0, padding: "16px 18px", cursor: "pointer", transition: "all 0.2s", boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }}
+    >
       <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
-        <div style={{ width: 28, height: 28, borderRadius: 0, background: colors.primaryLight, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", color: colors.white, fontWeight: 700, fontSize: 12 }}>{index + 1}</div>
+        <div style={{ width: 28, height: 28, borderRadius: 0, background: colors.yellow, border: `1px solid ${colors.black}`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", color: colors.black, fontWeight: 900, fontSize: 12 }}>{index + 1}</div>
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: colors.text }}>{word.jp}</div>
           <div style={{ fontSize: 12, color: colors.gray, marginTop: 2 }}>{word.reading}</div>
           {flipped && (
             <div style={{ marginTop: 10, paddingTop: 10, borderTop: `1px solid ${colors.grayLight}` }}>
-              <div style={{ fontSize: 14, fontWeight: 600, color: colors.primaryLight, marginBottom: 8 }}>{word.en}</div>
-              <div style={{ fontSize: 13, color: colors.text, background: colors.white, borderRadius: 0, padding: "8px 12px" }}><span style={{ fontWeight: 600 }}>例：</span>{word.example}</div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: colors.accent, marginBottom: 8 }}>{word.en}</div>
+              <div style={{ fontSize: 13, color: colors.text, background: colors.white, padding: "8px 12px" }}><span style={{ fontWeight: 600 }}>例：</span>{word.example}</div>
               <div style={{ fontSize: 12, color: colors.gray, marginTop: 4, fontStyle: "italic" }}>{word.exampleEn}</div>
             </div>
           )}
@@ -123,8 +178,8 @@ function VocabCard({ word, index }: { word: { id: number; jp: string; reading: s
 function VocabSection({ vocab }: { vocab: { id: number; jp: string; reading: string; en: string; example: string; exampleEn: string }[] }) {
   return (
     <div>
-      <div style={{ background: colors.primaryBg, borderRadius: 0, padding: "14px 18px", marginBottom: 20, borderLeft: `4px solid ${colors.primaryLight}` }}>
-        <div style={{ fontSize: 13, fontWeight: 600, color: colors.primary }}>How to use</div>
+      <div style={{ background: colors.primaryBg, padding: "14px 18px", marginBottom: 20, borderLeft: `4px solid ${colors.yellow}`, border: `1px solid ${colors.grayLight}`, borderLeftWidth: 4, borderLeftColor: colors.yellow }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: colors.accent }}>How to use</div>
         <div style={{ fontSize: 13, color: colors.gray, marginTop: 4 }}>Tap each card to reveal the meaning and example sentence.</div>
       </div>
       <h3 style={{ fontSize: 15, fontWeight: 700, color: colors.text, marginBottom: 14 }}>Vocabulary ({vocab.length} words)</h3>
@@ -145,12 +200,12 @@ function QuizCard({ q }: { q: { id: number; question: string; options: string[];
 
   const reset = () => { setSelected(null); setChecked(false); };
 
-  const optionStyle = (i: number) => {
+  const optionStyle = (i: number): React.CSSProperties => {
     if (!checked) {
       return {
-        border: `2px solid ${selected === i ? colors.primary : colors.grayLight}`,
+        border: `2px solid ${selected === i ? colors.accent : colors.grayLight}`,
         background: selected === i ? colors.primaryBg : colors.white,
-        color: selected === i ? colors.primary : colors.text,
+        color: selected === i ? colors.accent : colors.text,
       };
     }
     if (i === q.correct) return { border: "2px solid #22c55e", background: "#f0fdf4", color: "#16a34a" };
@@ -159,14 +214,16 @@ function QuizCard({ q }: { q: { id: number; question: string; options: string[];
   };
 
   return (
-    <div style={{ background: colors.white, border: `1px solid ${colors.grayLight}`, borderRadius: 0, padding: "18px 20px", marginBottom: 14 }}>
-      <div style={{ fontSize: 12, fontWeight: 700, color: colors.primaryLight, marginBottom: 10 }}>Q{q.id}</div>
+    <div style={{ background: colors.white, border: `1px solid ${colors.grayLight}`, padding: "18px 20px", marginBottom: 14, boxShadow: "0 1px 3px rgba(0,0,0,0.06)" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+        <span style={{ background: colors.yellow, color: colors.black, fontSize: 11, fontWeight: 900, padding: "2px 10px", border: `1px solid ${colors.black}` }}>Q{q.id}</span>
+      </div>
       <div style={{ fontSize: 15, color: colors.text, marginBottom: 16, lineHeight: 1.8 }}>{q.question}</div>
       <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 14 }}>
         {q.options.map((opt, i) => (
           <button
             key={i}
-            onClick={() => { if (!checked) { setSelected(i); } }}
+            onClick={() => { if (!checked) setSelected(i); }}
             style={{ padding: "10px 16px", borderRadius: 0, cursor: checked ? "default" : "pointer", fontWeight: 500, fontSize: 14, textAlign: "left", transition: "all 0.15s", ...optionStyle(i) }}
           >
             {String.fromCharCode(65 + i)}. {opt}
@@ -174,12 +231,18 @@ function QuizCard({ q }: { q: { id: number; question: string; options: string[];
         ))}
       </div>
       <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-        <button onClick={() => setChecked(true)} disabled={selected === null || checked} style={{ background: selected !== null && !checked ? colors.primary : colors.grayLight, color: selected !== null && !checked ? colors.white : colors.textLight, border: "none", borderRadius: 0, padding: "8px 20px", cursor: selected !== null && !checked ? "pointer" : "default", fontWeight: 600, fontSize: 13 }}>Check</button>
-        <button onClick={reset} style={{ background: colors.grayLight, color: colors.gray, border: "none", borderRadius: 0, padding: "8px 16px", cursor: "pointer", fontSize: 13 }}>Reset</button>
+        <button
+          onClick={() => setChecked(true)}
+          disabled={selected === null || checked}
+          style={{ background: selected !== null && !checked ? colors.accent : colors.grayLight, color: selected !== null && !checked ? colors.white : colors.textLight, border: "none", padding: "8px 20px", cursor: selected !== null && !checked ? "pointer" : "default", fontWeight: 700, fontSize: 13 }}
+        >
+          Check
+        </button>
+        <button onClick={reset} style={{ background: colors.grayLight, color: colors.gray, border: "none", padding: "8px 16px", cursor: "pointer", fontSize: 13 }}>Reset</button>
         {checked && <span style={{ fontSize: 14, fontWeight: 700, color: isCorrect ? "#22c55e" : "#ef4444" }}>{isCorrect ? "Correct!" : "Try again"}</span>}
       </div>
       {checked && (
-        <div style={{ marginTop: 12, background: isCorrect ? "#f0fdf4" : "#fef9c3", borderRadius: 0, padding: "10px 14px", fontSize: 13, color: isCorrect ? "#16a34a" : "#854d0e", borderLeft: `3px solid ${isCorrect ? "#22c55e" : "#eab308"}` }}>
+        <div style={{ marginTop: 12, background: isCorrect ? "#f0fdf4" : "#fffde6", padding: "10px 14px", fontSize: 13, color: isCorrect ? "#16a34a" : colors.text, borderLeft: `3px solid ${isCorrect ? "#22c55e" : colors.yellow}` }}>
           <span style={{ fontWeight: 700 }}>解説：</span>{q.explanation}
         </div>
       )}
@@ -190,8 +253,8 @@ function QuizCard({ q }: { q: { id: number; question: string; options: string[];
 function QuizSection({ quiz }: { quiz: { id: number; question: string; options: string[]; correct: number; explanation: string }[] }) {
   return (
     <div>
-      <div style={{ background: colors.primaryBg, borderRadius: 0, padding: "14px 18px", marginBottom: 20, borderLeft: `4px solid ${colors.primaryLight}` }}>
-        <div style={{ fontSize: 13, fontWeight: 600, color: colors.primary }}>Practice Quiz</div>
+      <div style={{ background: colors.primaryBg, padding: "14px 18px", marginBottom: 20, borderLeft: `4px solid ${colors.yellow}`, border: `1px solid ${colors.grayLight}`, borderLeftWidth: 4, borderLeftColor: colors.yellow }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: colors.accent }}>Practice Quiz</div>
         <div style={{ fontSize: 13, color: colors.gray, marginTop: 4 }}>Select the best answer for each question. Read the explanation after checking.</div>
       </div>
       {quiz.map(q => <QuizCard key={q.id} q={q} />)}
@@ -205,15 +268,15 @@ function QuizSection({ quiz }: { quiz: { id: number; question: string; options: 
 function CompleteModal({ unit, onClose }: { unit: { id: number; title: string; titleEn: string }; onClose: () => void }) {
   return (
     <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}>
-      <div style={{ background: colors.white, borderRadius: 0, padding: 36, maxWidth: 400, width: "100%", textAlign: "center", boxShadow: "0 20px 60px rgba(0,0,0,0.3)" }}>
-        <div style={{ fontSize: 40, marginBottom: 12 }}>🎉</div>
-        <div style={{ fontSize: 22, fontWeight: 800, color: colors.text, marginBottom: 8 }}>Unit {unit.id} Complete!</div>
+      <div style={{ background: colors.white, border: `3px solid ${colors.black}`, boxShadow: `6px 6px 0 ${colors.black}`, padding: 36, maxWidth: 400, width: "100%", textAlign: "center" }}>
+        <div style={{ width: 56, height: 56, background: colors.yellow, border: `3px solid ${colors.black}`, margin: "0 auto 16px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28 }}>✓</div>
+        <div style={{ fontSize: 22, fontWeight: 900, color: colors.text, marginBottom: 8 }}>Unit {unit.id} Complete!</div>
         <div style={{ fontSize: 15, color: colors.gray, marginBottom: 4 }}>{unit.title}</div>
         <div style={{ fontSize: 13, color: colors.gray, marginBottom: 24, fontStyle: "italic" }}>{unit.titleEn}</div>
-        <div style={{ background: "#f0fdf4", borderRadius: 0, padding: "14px 20px", marginBottom: 24 }}>
-          <div style={{ fontSize: 13, color: "#16a34a", fontWeight: 600 }}>進捗が保存されました / Progress saved!</div>
+        <div style={{ background: "#f0fdf4", padding: "14px 20px", marginBottom: 24, border: "1px solid #86efac" }}>
+          <div style={{ fontSize: 13, color: "#16a34a", fontWeight: 700 }}>進捗が保存されました / Progress saved!</div>
         </div>
-        <button onClick={onClose} style={{ background: colors.primaryLight, color: colors.white, border: "none", borderRadius: 0, padding: "12px 32px", cursor: "pointer", fontWeight: 700, fontSize: 15, width: "100%" }}>← ユニット一覧に戻る / Back to Units</button>
+        <button onClick={onClose} style={{ background: colors.accent, color: colors.white, border: "none", padding: "12px 32px", cursor: "pointer", fontWeight: 700, fontSize: 15, width: "100%" }}>← ユニット一覧に戻る / Back to Units</button>
       </div>
     </div>
   );
@@ -238,31 +301,31 @@ function UnitPage({ unitId, onBack, onComplete, unitCompleted }: { unitId: numbe
   if (!unitData) return null;
 
   const currentIdx = SECTION_ORDER.indexOf(section);
-
   const handleComplete = () => { onComplete(unitData.id); setShowModal(true); };
 
   const content = (
-    <div style={{ background: colors.white, borderRadius: 0, padding: isPC ? 28 : 20, boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
-      <button onClick={onBack} style={{ background: "none", border: "none", color: colors.primaryLight, cursor: "pointer", fontSize: 14, fontWeight: 600, marginBottom: 16, padding: 0 }}>← Back to Units</button>
+    <div style={{ background: colors.white, padding: isPC ? 28 : 20, boxShadow: "0 4px 24px rgba(0,0,0,0.08)", border: `1px solid ${colors.grayLight}` }}>
+      <button onClick={onBack} style={{ background: "none", border: "none", color: colors.accent, cursor: "pointer", fontSize: 14, fontWeight: 700, marginBottom: 16, padding: 0 }}>← Back to Units</button>
       <div style={{ marginBottom: 20 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6, flexWrap: "wrap" }}>
-          <span style={{ background: colors.primaryLight, color: colors.white, borderRadius: 0, padding: "4px 12px", fontSize: 13, fontWeight: 700 }}>Unit {unitData.id}</span>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8, flexWrap: "wrap" }}>
+          <span style={{ background: colors.yellow, color: colors.black, border: `1px solid ${colors.black}`, padding: "4px 12px", fontSize: 13, fontWeight: 900 }}>Unit {unitData.id}</span>
           <span style={{ fontSize: 13, color: colors.gray }}>Business Katakana</span>
-          {unitCompleted && <span style={{ background: "#dcfce7", color: "#16a34a", borderRadius: 0, padding: "4px 10px", fontSize: 12, fontWeight: 700 }}>Completed</span>}
+          {unitCompleted && <span style={{ background: "#dcfce7", color: "#16a34a", border: "1px solid #86efac", padding: "4px 10px", fontSize: 12, fontWeight: 700 }}>Completed</span>}
         </div>
-        <h2 style={{ margin: 0, fontSize: isPC ? 22 : 18, fontWeight: 800, color: colors.text }}>{unitData.title}</h2>
-        <p style={{ margin: "6px 0 0", fontSize: 14, color: colors.gray }}>{unitData.titleEn}</p>
+        <h2 style={{ margin: 0, fontSize: isPC ? 22 : 18, fontWeight: 900, color: colors.text }}>{unitData.title}</h2>
+        <p style={{ margin: "4px 0 0", fontSize: 14, color: colors.gray }}>{unitData.titleEn}</p>
       </div>
       <SectionTab sections={UNIT_SECTIONS} active={section} onChange={setSection} isPC={isPC} />
       {section === "vocab" && <VocabSection vocab={unitData.vocab} />}
       {section === "quiz" && <QuizSection quiz={unitData.quiz} />}
       <div style={{ display: "flex", gap: 10, marginTop: 28, justifyContent: "space-between" }}>
         {currentIdx > 0
-          ? <button onClick={() => setSection(SECTION_ORDER[currentIdx - 1])} style={{ background: colors.grayLight, color: colors.gray, border: "none", borderRadius: 0, padding: "10px 20px", cursor: "pointer", fontWeight: 600, fontSize: 14 }}>← 前へ / Prev</button>
+          ? <button onClick={() => setSection(SECTION_ORDER[currentIdx - 1])} style={{ background: colors.grayLight, color: colors.gray, border: "none", padding: "10px 20px", cursor: "pointer", fontWeight: 600, fontSize: 14 }}>← 前へ / Prev</button>
           : <div />}
         {currentIdx < SECTION_ORDER.length - 1
-          ? <button onClick={() => setSection(SECTION_ORDER[currentIdx + 1])} style={{ background: colors.primaryLight, color: colors.white, border: "none", borderRadius: 0, padding: "10px 24px", cursor: "pointer", fontWeight: 600, fontSize: 14 }}>次へ / Next →</button>
-          : <button onClick={handleComplete} style={{ background: unitCompleted ? "#22c55e" : "linear-gradient(135deg,#16a34a,#22c55e)", color: colors.white, border: "none", borderRadius: 0, padding: "10px 24px", cursor: "pointer", fontWeight: 700, fontSize: 14 }}>{unitCompleted ? "Completed!" : "Unit完了 / Mark Complete"}</button>}
+          ? <button onClick={() => setSection(SECTION_ORDER[currentIdx + 1])} style={{ background: colors.accent, color: colors.white, border: "none", padding: "10px 24px", cursor: "pointer", fontWeight: 700, fontSize: 14 }}>次へ / Next →</button>
+          : <button onClick={handleComplete} style={{ background: unitCompleted ? "#22c55e" : "linear-gradient(135deg,#16a34a,#22c55e)", color: colors.white, border: "none", padding: "10px 24px", cursor: "pointer", fontWeight: 700, fontSize: 14 }}>{unitCompleted ? "Completed!" : "Unit完了 / Mark Complete"}</button>
+        }
       </div>
       {showModal && <CompleteModal unit={unitData} onClose={() => { setShowModal(false); onBack(); }} />}
     </div>
@@ -270,18 +333,24 @@ function UnitPage({ unitId, onBack, onComplete, unitCompleted }: { unitId: numbe
 
   const sidebar = (
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-      <div style={{ background: colors.white, borderRadius: 0, padding: 20, boxShadow: "0 2px 12px rgba(0,0,0,0.07)" }}>
+      <div style={{ background: colors.white, padding: 20, boxShadow: "0 2px 12px rgba(0,0,0,0.07)", border: `1px solid ${colors.grayLight}` }}>
         <h3 style={{ margin: "0 0 14px", fontSize: 14, fontWeight: 700, color: colors.text }}>Unit {unitData.id} Contents</h3>
         {UNIT_SECTIONS.map(s => (
-          <button key={s.id} onClick={() => setSection(s.id)} style={{ display: "block", width: "100%", textAlign: "left", background: section === s.id ? colors.primaryBg : "none", border: "none", borderRadius: 0, padding: "8px 12px", cursor: "pointer", fontSize: 13, fontWeight: section === s.id ? 700 : 400, color: section === s.id ? colors.primary : colors.gray, marginBottom: 4 }}>{s.label}</button>
+          <button
+            key={s.id}
+            onClick={() => setSection(s.id)}
+            style={{ display: "block", width: "100%", textAlign: "left", background: section === s.id ? colors.primaryBg : "none", border: "none", borderLeft: section === s.id ? `3px solid ${colors.yellow}` : "3px solid transparent", padding: "8px 12px", cursor: "pointer", fontSize: 13, fontWeight: section === s.id ? 700 : 400, color: section === s.id ? colors.text : colors.gray, marginBottom: 4 }}
+          >
+            {s.label}
+          </button>
         ))}
         <div style={{ borderTop: `1px solid ${colors.grayLight}`, paddingTop: 12, marginTop: 8, fontSize: 12, color: colors.textLight }}>
           {unitData.vocab.length} words · {unitData.quiz.length} quiz questions
         </div>
       </div>
-      <div style={{ background: colors.primaryBg, borderRadius: 0, padding: "14px 16px", borderLeft: `3px solid ${colors.primary}` }}>
-        <div style={{ fontSize: 12, fontWeight: 700, color: colors.primary, marginBottom: 6 }}>このユニットについて</div>
-        <div style={{ fontSize: 12, color: colors.gray, lineHeight: 1.7 }}>職場でよく使うカタカナ語を単語カードで学び、クイズで確認しましょう。</div>
+      <div style={{ background: colors.primaryBg, padding: "14px 16px", borderLeft: `3px solid ${colors.yellow}` }}>
+        <div style={{ fontSize: 12, fontWeight: 700, color: colors.accent, marginBottom: 6 }}>このユニットについて</div>
+        <div style={{ fontSize: 12, color: colors.gray, lineHeight: 1.7 }}>単語カードをタップして意味と例文を確認し、クイズで理解を定着させましょう。</div>
       </div>
     </div>
   );
@@ -292,7 +361,7 @@ function UnitPage({ unitId, onBack, onComplete, unitCompleted }: { unitId: numbe
       <div style={{ width: "100%", maxWidth: 1080, margin: "0 auto", padding: isPC ? "24px 24px 48px" : "16px 12px 40px", flex: 1 }}>
         {isPC ? <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", gap: 24, alignItems: "start" }}>{content}{sidebar}</div> : content}
       </div>
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');`}</style>
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap');`}</style>
       <Footer />
     </div>
   );
@@ -310,44 +379,45 @@ function TopPage({ onSelectUnit, progress }: { onSelectUnit: (unit: { id: number
   const UnitCard = ({ unit }: { unit: { id: number; title: string; titleEn: string; available: boolean } }) => {
     const done = progress.completed.includes(unit.id);
     const inProg = progress.inProgress.includes(unit.id);
-    const bg = done ? "#dcfce7" : inProg ? "#fef9c3" : unit.available ? colors.primaryBg : colors.grayBg;
-    const border = done ? "#86efac" : inProg ? "#fde047" : unit.available ? "#bfdbfe" : colors.grayLight;
-    const numBg = done ? "#22c55e" : inProg ? "#eab308" : unit.available ? colors.primaryLight : "#cbd5e1";
+    const bg = done ? "#dcfce7" : inProg ? "#fffde6" : unit.available ? colors.white : colors.grayBg;
+    const border = done ? "#86efac" : inProg ? colors.yellow : unit.available ? colors.grayLight : colors.grayLight;
+    const numBg = done ? "#22c55e" : inProg ? colors.yellow : unit.available ? colors.yellow : "#cbd5e1";
+    const numColor = done ? colors.white : colors.black;
     return (
       <div
         onClick={() => unit.available && onSelectUnit(unit)}
-        style={{ background: bg, border: `1px solid ${border}`, borderRadius: 0, padding: "13px 15px", cursor: unit.available ? "pointer" : "default", display: "flex", alignItems: "center", gap: 12, transition: "background 0.15s" }}
-        onMouseEnter={e => { if (unit.available) { (e.currentTarget as HTMLDivElement).style.background = done ? "#bbf7d0" : inProg ? "#fef08a" : "#dbeafe"; } }}
+        style={{ background: bg, border: `1px solid ${border}`, padding: "13px 15px", cursor: unit.available ? "pointer" : "default", display: "flex", alignItems: "center", gap: 12, transition: "background 0.15s", borderLeft: unit.available && !done ? `3px solid ${colors.yellow}` : `1px solid ${border}` }}
+        onMouseEnter={e => { if (unit.available) { (e.currentTarget as HTMLDivElement).style.background = done ? "#bbf7d0" : "#fffde6"; } }}
         onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = bg; }}
       >
-        <div style={{ width: 34, height: 34, borderRadius: 0, background: numBg, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", color: colors.white, fontWeight: 700, fontSize: 13 }}>{done ? "✓" : unit.id}</div>
+        <div style={{ width: 34, height: 34, background: numBg, border: `1px solid ${colors.black}`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", color: numColor, fontWeight: 900, fontSize: 13 }}>{done ? "✓" : unit.id}</div>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: 14, fontWeight: 600, color: unit.available || done ? colors.text : colors.textLight, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{unit.title}</div>
           <div style={{ fontSize: 11, color: colors.gray, marginTop: 2 }}>{unit.titleEn}</div>
         </div>
         {unit.available
-          ? <span style={{ color: colors.primaryLight, fontSize: 18 }}>→</span>
-          : <span style={{ fontSize: 11, color: colors.textLight, background: colors.grayLight, borderRadius: 0, padding: "2px 7px", whiteSpace: "nowrap" }}>Soon</span>}
+          ? <span style={{ color: colors.accent, fontSize: 18, fontWeight: 700 }}>→</span>
+          : <span style={{ fontSize: 11, color: colors.textLight, background: colors.grayLight, padding: "2px 7px", whiteSpace: "nowrap" }}>Soon</span>}
       </div>
     );
   };
 
   const main = (
-    <div style={{ background: colors.white, borderRadius: 0, padding: isPC ? 28 : 20, boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
-      <div style={{ marginBottom: 24, padding: "18px 22px", border: "1px solid #dddddd", background: "#f8faff" }}>
-        <h3 style={{ margin: "0 0 12px", fontSize: 16, fontWeight: 700, color: colors.primary }}>このコースについて / About This Course</h3>
-        <p style={{ margin: 0, fontSize: 14, color: colors.gray, lineHeight: 1.8 }}>
+    <div style={{ background: colors.white, padding: isPC ? 28 : 20, boxShadow: "0 4px 24px rgba(0,0,0,0.08)", border: `1px solid ${colors.grayLight}` }}>
+      <div style={{ marginBottom: 24, padding: "18px 22px", border: `1px solid ${colors.grayLight}`, borderLeft: `4px solid ${colors.yellow}`, background: colors.primaryBg }}>
+        <h3 style={{ margin: "0 0 10px", fontSize: 15, fontWeight: 700, color: colors.text }}>このコースについて / About This Course</h3>
+        <p style={{ margin: 0, fontSize: 13, color: colors.gray, lineHeight: 1.8 }}>
           職場でよく使うカタカナ語を10のユニットで学べます。単語カードで意味と例文を確認し、クイズで理解を定着させましょう。<br />
-          Learn business katakana words used daily in Japanese workplaces — 10 units, 10 words each, with vocabulary cards and practice quizzes.
+          Learn business katakana words used daily in Japanese workplaces — 10 units, 10 words each.
         </p>
       </div>
       <div style={{ marginBottom: 24 }}>
         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
-          <span style={{ fontSize: 14, fontWeight: 600, color: colors.primary }}>Your Progress</span>
+          <span style={{ fontSize: 14, fontWeight: 700, color: colors.text }}>Your Progress</span>
           <span style={{ fontSize: 13, color: colors.gray }}>{progress.completed.length} / {TOTAL} units</span>
         </div>
-        <div style={{ background: colors.grayLight, borderRadius: 0, height: 10, overflow: "hidden" }}>
-          <div style={{ width: `${pct}%`, height: "100%", background: "linear-gradient(90deg,#3b82f6,#1d4ed8)", borderRadius: 0, transition: "width 0.6s" }} />
+        <div style={{ background: colors.grayLight, height: 10, overflow: "hidden", border: `1px solid ${colors.grayLight}` }}>
+          <div style={{ width: `${pct}%`, height: "100%", background: `linear-gradient(90deg, ${colors.yellow}, #f0c000)`, transition: "width 0.6s" }} />
         </div>
         <div style={{ textAlign: "right", marginTop: 4, fontSize: 12, color: colors.textLight }}>{pct}% complete</div>
       </div>
@@ -360,26 +430,26 @@ function TopPage({ onSelectUnit, progress }: { onSelectUnit: (unit: { id: number
 
   const sidebar = (
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-      <div style={{ background: colors.white, borderRadius: 0, padding: 20, boxShadow: "0 2px 12px rgba(0,0,0,0.07)" }}>
+      <div style={{ background: colors.white, padding: 20, boxShadow: "0 2px 12px rgba(0,0,0,0.07)", border: `1px solid ${colors.grayLight}` }}>
         <h3 style={{ margin: "0 0 16px", fontSize: 14, fontWeight: 700, color: colors.text }}>Stats</h3>
         {[
           { label: "Completed", value: progress.completed.length, color: "#22c55e" },
-          { label: "Remaining", value: TOTAL - progress.completed.length, color: colors.primaryLight },
+          { label: "Remaining", value: TOTAL - progress.completed.length, color: colors.accent },
           { label: "Total Units", value: TOTAL, color: colors.gray },
         ].map(s => (
           <div key={s.label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
             <span style={{ fontSize: 13, color: colors.gray }}>{s.label}</span>
-            <span style={{ fontSize: 18, fontWeight: 700, color: s.color }}>{s.value}</span>
+            <span style={{ fontSize: 18, fontWeight: 900, color: s.color }}>{s.value}</span>
           </div>
         ))}
         <div style={{ borderTop: `1px solid ${colors.grayLight}`, paddingTop: 12, fontSize: 12, color: colors.textLight, textAlign: "center" }}>10 words + 5 quiz questions per unit</div>
       </div>
-      <div style={{ background: colors.primaryBg, borderRadius: 0, padding: "16px", borderLeft: `3px solid ${colors.primary}` }}>
-        <div style={{ fontSize: 13, fontWeight: 700, color: colors.primary, marginBottom: 8 }}>学習のポイント</div>
+      <div style={{ background: colors.yellow, padding: "16px", border: `2px solid ${colors.black}`, boxShadow: `4px 4px 0 ${colors.black}` }}>
+        <div style={{ fontSize: 13, fontWeight: 900, color: colors.black, marginBottom: 10 }}>学習のポイント</div>
         {["単語カードをタップして意味を確認", "例文で使い方を覚える", "クイズで理解を確かめる"].map((tip, i) => (
           <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start", marginBottom: 6 }}>
-            <span style={{ color: colors.primary, fontWeight: 700, flexShrink: 0 }}>·</span>
-            <span style={{ fontSize: 12, color: colors.gray }}>{tip}</span>
+            <span style={{ color: colors.black, fontWeight: 900, flexShrink: 0 }}>·</span>
+            <span style={{ fontSize: 12, color: colors.black, fontWeight: 600 }}>{tip}</span>
           </div>
         ))}
       </div>
@@ -388,16 +458,9 @@ function TopPage({ onSelectUnit, progress }: { onSelectUnit: (unit: { id: number
 
   return (
     <div style={{ minHeight: "100vh", width: "100vw", background: "#f5f5f5", fontFamily: "'Plus Jakarta Sans', sans-serif", display: "flex", flexDirection: "column" }}>
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');`}</style>
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap');`}</style>
       <Header isPC={isPC} />
-      <div style={{ width: "100%", background: colors.primary, padding: isPC ? "48px 24px" : "32px 16px", textAlign: "center" }}>
-        <div style={{ maxWidth: 1080, margin: "0 auto" }}>
-          <h2 style={{ margin: "0 0 12px", fontSize: isPC ? 28 : 22, fontWeight: 800, color: colors.white }}>仕事のカタカナ語</h2>
-          <p style={{ margin: 0, fontSize: isPC ? 16 : 14, color: "rgba(255,255,255,0.85)", lineHeight: 1.8 }}>
-            職場でよく使うカタカナ語を学べます。単語・クイズで実践的に練習できます。
-          </p>
-        </div>
-      </div>
+      <HeroSection isPC={isPC} />
       <div style={{ width: "100%", maxWidth: 1080, margin: "0 auto", padding: isPC ? "24px 24px 48px" : "16px 12px 40px", flex: 1 }}>
         {isPC ? <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", gap: 24, alignItems: "start" }}>{main}{sidebar}</div> : main}
       </div>

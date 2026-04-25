@@ -135,13 +135,15 @@ export default function TopPage() {
               </div>
               <button className="tp-enroll-btn" onClick={() => router.push("/interview")}>受講する</button>
             </div>
-            {/* Travel */}
-            <div className="tp-course-card" style={{ border: `4px solid ${black}`, background: yellow, padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 400, boxShadow: shadowBlack, opacity: 0.9 }}>
+            {/* Katakana */}
+            <div className="tp-course-card" onClick={() => router.push("/katakana")} style={{ border: `4px solid ${black}`, background: yellow, padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 400, boxShadow: shadowBlack, cursor: "pointer" }}>
               <div>
-                <span style={{ background: black, color: white, fontSize: 11, fontWeight: 900, letterSpacing: "0.1em", padding: "4px 12px", border: `2px solid ${white}`, textTransform: "uppercase", marginBottom: 24, display: "inline-block" }}>COMING SOON</span>
-                <h3 style={{ fontSize: 40, fontWeight: 900, color: black, lineHeight: 1.1, marginBottom: 16, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>仕事で使う<br />カタカナ語</h3>
+                <span style={{ background: blue, color: white, fontSize: 11, fontWeight: 900, letterSpacing: "0.1em", padding: "4px 12px", border: `2px solid ${black}`, textTransform: "uppercase", marginBottom: 24, display: "inline-block" }}>公開中</span>
+                <h3 style={{ fontSize: 32, fontWeight: 900, color: black, lineHeight: 1.2, marginBottom: 8, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>仕事のカタカナ語</h3>
+                <p style={{ fontSize: 14, fontWeight: 500, color: black, margin: "0 0 16px", letterSpacing: "0.05em" }}>BUSINESS KATAKANA</p>
+                <p style={{ fontSize: 13, fontWeight: 500, color: black, lineHeight: 1.7, margin: 0, opacity: 0.85 }}>職場でよく使うカタカナ語を学べます。</p>
               </div>
-              <div style={{ color: black, fontWeight: 900, opacity: 0.3, textAlign: "right", fontSize: 20 }}>03</div>
+              <button className="tp-enroll-btn" onClick={(e) => { e.stopPropagation(); router.push("/katakana"); }}>受講する</button>
             </div>
           </div>
         </div>
