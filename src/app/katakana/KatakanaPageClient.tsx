@@ -378,10 +378,9 @@ function TopPage({ onSelectUnit, progress }: { onSelectUnit: (unit: { id: number
 
   const UnitCard = ({ unit }: { unit: { id: number; title: string; titleEn: string; available: boolean } }) => {
     const done = progress.completed.includes(unit.id);
-    const inProg = progress.inProgress.includes(unit.id);
-    const bg = done ? "#dcfce7" : inProg ? "#fffde6" : unit.available ? colors.white : colors.grayBg;
-    const border = done ? "#86efac" : inProg ? colors.yellow : unit.available ? colors.grayLight : colors.grayLight;
-    const numBg = done ? "#22c55e" : inProg ? colors.yellow : unit.available ? colors.yellow : "#cbd5e1";
+    const bg = done ? "#dcfce7" : unit.available ? colors.white : colors.grayBg;
+    const border = done ? "#86efac" : colors.grayLight;
+    const numBg = done ? "#22c55e" : unit.available ? colors.yellow : "#cbd5e1";
     const numColor = done ? colors.white : colors.black;
     return (
       <div
