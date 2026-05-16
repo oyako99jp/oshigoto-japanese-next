@@ -474,9 +474,10 @@ function TopPage({ onSelectUnit, progress }: { onSelectUnit: (unit: { id: number
 // ============================================================
 export default function KatakanaPageClient() {
   const [progress, setProgress] = useState(DEFAULT_PROGRESS);
-  const [activeUnitId, setActiveUnitId] = useState<number | null>(null);
 
   useEffect(() => { setProgress(loadProgress()); }, []);
+
+  const router = useRouter();
 
   const handleSelectUnit = (unit: { id: number; title: string; titleEn: string; available: boolean }) => {
     if (!progress.completed.includes(unit.id) && !progress.inProgress.includes(unit.id)) {
@@ -484,7 +485,7 @@ export default function KatakanaPageClient() {
       setProgress(updated);
       saveProgress(updated);
     }
-    setActiveUnitId(unit.id);
+    router.push(`/katakana/unit/${unit.id}`);
   };
 
   const handleComplete = (unitId: number) => {
@@ -497,18 +498,7 @@ export default function KatakanaPageClient() {
     saveProgress(updated);
   };
 
-  const handleBack = () => setActiveUnitId(null);
-
-  if (activeUnitId !== null) {
-    return (
-      <UnitPage
-        unitId={activeUnitId}
-        onBack={handleBack}
-        onComplete={handleComplete}
-        unitCompleted={progress.completed.includes(activeUnitId)}
-      />
-    );
-  }
+  const handleBack = () => router.push("/katakana");
 
   return <TopPage onSelectUnit={handleSelectUnit} progress={progress} />;
 }
