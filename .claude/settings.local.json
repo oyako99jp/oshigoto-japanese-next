@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "Bash(npm run:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\oyako\\\\Documents\\\\Dev\\\\oshigoto-japanese-next\\\\app\" -Recurse -Include \"*.tsx\", \"*.ts\", \"*.json\")",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)",
+      "Bash(npx next *)",
+      "Bash(Start-Process -NoNewWindow npx -ArgumentList \"next\",\"start\",\"-p\",\"3456\" -PassThru)",
+      "Bash(curl -s http://localhost:3456/it/unit/1)",
+      "Bash(grep -o '.\\\\{0,100\\\\}会話\\\\|ビジネス日本語\\\\|Vocabulary\\\\|vocab\\\\|Unit1')",
+      "Bash(grep -o '.\\\\{0,80\\\\}自己紹介\\\\|報告\\\\|プレゼンテーション')",
+      "Bash(xargs kill *)"
     ]
   }
 }
