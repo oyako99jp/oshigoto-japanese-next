@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { unitDataMap } from "../../data";
+import { unitDataMap, units } from "../../data";
 
 // ============================================================
 // HOOKS & UTILS
@@ -271,7 +271,7 @@ function RoleplaySection({ scenarios }) {
 // ============================================================
 // COMPLETE MODAL
 // ============================================================
-function CompleteModal({ unit, onClose }) {
+function CompleteModal({ unit, prevUnit, nextUnit, onClose }) {
   return (
     <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}>
       <div style={{ background: colors.white, borderRadius: 0, padding: 36, maxWidth: 400, width: "100%", textAlign: "center", boxShadow: "0 20px 60px rgba(0,0,0,0.3)" }}>
@@ -281,8 +281,40 @@ function CompleteModal({ unit, onClose }) {
         <div style={{ background: "#f0fdf4", borderRadius: 0, padding: "14px 20px", marginBottom: 24 }}>
           <div style={{ fontSize: 13, color: "#16a34a", fontWeight: 600 }}>進捗が保存されました / Progress saved!</div>
         </div>
+        {(prevUnit || nextUnit) && (
+          <div style={{ marginBottom: 20 }}>
+            <UnitNavRow prevUnit={prevUnit} nextUnit={nextUnit} basePath="/it/unit" stack />
+          </div>
+        )}
         <button onClick={onClose} style={{ background: colors.primaryLight, color: colors.white, border: "none", borderRadius: 0, padding: "12px 32px", cursor: "pointer", fontWeight: 700, fontSize: 15, width: "100%" }}>← ユニット一覧に戻る / Back to Units</button>
       </div>
+    </div>
+  );
+}
+
+// ============================================================
+// UNIT NAV (前のUnit / 次のUnit)
+// ============================================================
+function UnitNavLink({ direction, unit, basePath }) {
+  const router = useRouter();
+  const isNext = direction === "next";
+  return (
+    <button onClick={() => router.push(`${basePath}/${unit.id}`)} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: isNext ? "flex-end" : "flex-start", textAlign: isNext ? "right" : "left", gap: 2, background: isNext ? colors.primaryLight : colors.grayLight, color: isNext ? colors.white : colors.gray, border: "none", borderRadius: 0, padding: "10px 18px", minHeight: 48, cursor: "pointer" }}>
+      <span style={{ fontSize: 11, fontWeight: 600, opacity: 0.85 }}>{isNext ? "次のUnit →" : "← 前のUnit"}</span>
+      <span style={{ fontSize: 12, fontWeight: 700, marginTop: 4 }}>Unit {unit.id}</span>
+      <span style={{ fontSize: 14, fontWeight: 700 }}>{unit.titleEn}</span>
+      <span style={{ fontSize: 12, opacity: 0.8 }}>{unit.title}</span>
+    </button>
+  );
+}
+
+function UnitNavRow({ prevUnit, nextUnit, isPC = false, basePath, stack = false }) {
+  if (!prevUnit && !nextUnit) return null;
+  const vertical = stack || !isPC;
+  return (
+    <div style={{ display: "flex", flexDirection: vertical ? "column-reverse" : "row", gap: 10 }}>
+      {prevUnit && <UnitNavLink direction="prev" unit={prevUnit} basePath={basePath} />}
+      {nextUnit && <UnitNavLink direction="next" unit={nextUnit} basePath={basePath} />}
     </div>
   );
 }
@@ -303,6 +335,11 @@ function UnitPage({ unitData, onBack, onComplete, unitCompleted }) {
     { id: "roleplay", label: "Roleplay" },
   ];
   const currentIdx = sectionOrder.indexOf(section);
+
+  const availableUnits = units.filter(u => u.available);
+  const unitIdx = availableUnits.findIndex(u => u.id === unitData.id);
+  const prevUnit = unitIdx > 0 ? availableUnits[unitIdx - 1] : null;
+  const nextUnit = unitIdx >= 0 && unitIdx < availableUnits.length - 1 ? availableUnits[unitIdx + 1] : null;
 
   const handleComplete = () => { onComplete(unitData.id); setShowModal(true); };
 
@@ -332,7 +369,10 @@ function UnitPage({ unitData, onBack, onComplete, unitCompleted }) {
           : <button onClick={handleComplete} style={{ background: unitCompleted ? "#22c55e" : "linear-gradient(135deg,#16a34a,#22c55e)", color: colors.white, border: "none", borderRadius: 0, padding: "10px 24px", cursor: "pointer", fontWeight: 700, fontSize: 14 }}>{unitCompleted ? "Completed!" : "Unit完了 / Mark Complete"}</button>
         }
       </div>
-      {showModal && <CompleteModal unit={unitData} onClose={() => { setShowModal(false); onBack(); }} />}
+      <div style={{ marginTop: 16 }}>
+        <UnitNavRow prevUnit={prevUnit} nextUnit={nextUnit} isPC={isPC} basePath="/it/unit" />
+      </div>
+      {showModal && <CompleteModal unit={unitData} prevUnit={prevUnit} nextUnit={nextUnit} onClose={() => { setShowModal(false); onBack(); }} />}
     </div>
   );
 
@@ -369,6 +409,7 @@ export default function UnitPageClient({ id }: { id: string }) {
   if (!unitData) return null;
   return (
     <UnitPage
+      key={unitData.id}
       unitData={unitData}
       onBack={() => router.push("/it")}
       onComplete={() => {}}

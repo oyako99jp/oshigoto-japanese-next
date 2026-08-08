@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { katakanaDataMap } from "../../data";
+import { katakanaDataMap, katakanaUnits } from "../../data";
 
 // ============================================================
 // HOOKS
@@ -269,7 +269,7 @@ function QuizSection({ quiz }: { quiz: { id: number; question: string; options: 
 // ============================================================
 // COMPLETE MODAL
 // ============================================================
-function CompleteModal({ unitId, title, onClose }: { unitId: number; title: string; onClose: () => void }) {
+function CompleteModal({ unitId, title, prevUnit, nextUnit, onClose }: { unitId: number; title: string; prevUnit: { id: number; title: string; titleEn: string } | null; nextUnit: { id: number; title: string; titleEn: string } | null; onClose: () => void }) {
   return (
     <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}>
       <div style={{ background: colors.white, padding: 36, maxWidth: 400, width: "100%", textAlign: "center", border: `3px solid ${colors.black}`, boxShadow: `6px 6px 0 ${colors.black}` }}>
@@ -278,10 +278,42 @@ function CompleteModal({ unitId, title, onClose }: { unitId: number; title: stri
         <div style={{ background: colors.primaryBg, padding: "14px 20px", marginBottom: 24, border: `1px solid ${colors.yellow}` }}>
           <div style={{ fontSize: 13, color: colors.accent, fontWeight: 600 }}>進捗が保存されました / Progress saved!</div>
         </div>
+        {(prevUnit || nextUnit) && (
+          <div style={{ marginBottom: 20 }}>
+            <UnitNavRow prevUnit={prevUnit} nextUnit={nextUnit} basePath="/katakana/unit" stack />
+          </div>
+        )}
         <button onClick={onClose} style={{ background: colors.yellow, color: colors.black, border: `2px solid ${colors.black}`, padding: "12px 32px", cursor: "pointer", fontWeight: 700, fontSize: 15, width: "100%", boxShadow: `3px 3px 0 ${colors.black}` }}>
           ← ユニット一覧に戻る
         </button>
       </div>
+    </div>
+  );
+}
+
+// ============================================================
+// UNIT NAV (前のUnit / 次のUnit)
+// ============================================================
+function UnitNavLink({ direction, unit, basePath }: { direction: "prev" | "next"; unit: { id: number; title: string; titleEn: string }; basePath: string }) {
+  const router = useRouter();
+  const isNext = direction === "next";
+  return (
+    <button onClick={() => router.push(`${basePath}/${unit.id}`)} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: isNext ? "flex-end" : "flex-start", textAlign: isNext ? "right" : "left", gap: 2, background: isNext ? colors.accent : colors.grayLight, color: isNext ? colors.white : colors.gray, border: "none", borderRadius: 0, padding: "10px 18px", minHeight: 48, cursor: "pointer" }}>
+      <span style={{ fontSize: 11, fontWeight: 600, opacity: 0.85 }}>{isNext ? "次のUnit →" : "← 前のUnit"}</span>
+      <span style={{ fontSize: 12, fontWeight: 700, marginTop: 4 }}>Unit {unit.id}</span>
+      <span style={{ fontSize: 14, fontWeight: 700 }}>{unit.titleEn}</span>
+      <span style={{ fontSize: 12, opacity: 0.8 }}>{unit.title}</span>
+    </button>
+  );
+}
+
+function UnitNavRow({ prevUnit, nextUnit, isPC, basePath, stack }: { prevUnit: { id: number; title: string; titleEn: string } | null; nextUnit: { id: number; title: string; titleEn: string } | null; isPC?: boolean; basePath: string; stack?: boolean }) {
+  if (!prevUnit && !nextUnit) return null;
+  const vertical = stack || !isPC;
+  return (
+    <div style={{ display: "flex", flexDirection: vertical ? "column-reverse" : "row", gap: 10 }}>
+      {prevUnit && <UnitNavLink direction="prev" unit={prevUnit} basePath={basePath} />}
+      {nextUnit && <UnitNavLink direction="next" unit={nextUnit} basePath={basePath} />}
     </div>
   );
 }
@@ -299,10 +331,17 @@ function UnitPage({ unitId, unitCompleted, onComplete }: { unitId: number; unitC
   const unitData = katakanaDataMap[unitId];
   if (!unitData) return null;
 
+  const sectionOrder = ["vocab", "quiz"];
   const sections = [
     { id: "vocab", label: "Vocabulary" },
     { id: "quiz", label: "Quiz" },
   ];
+  const currentIdx = sectionOrder.indexOf(section);
+
+  const availableUnits = katakanaUnits.filter(u => u.available);
+  const unitIdx = availableUnits.findIndex(u => u.id === unitId);
+  const prevUnit = unitIdx > 0 ? availableUnits[unitIdx - 1] : null;
+  const nextUnit = unitIdx >= 0 && unitIdx < availableUnits.length - 1 ? availableUnits[unitIdx + 1] : null;
 
   const handleComplete = () => {
     onComplete(unitId);
@@ -328,15 +367,24 @@ function UnitPage({ unitId, unitCompleted, onComplete }: { unitId: number; unitC
       {section === "vocab" && <VocabSection vocab={unitData.vocab} />}
       {section === "quiz" && <QuizSection quiz={unitData.quiz} />}
 
-      <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 28 }}>
-        <button
-          onClick={handleComplete}
-          style={{ background: unitCompleted ? "#22c55e" : colors.yellow, color: unitCompleted ? colors.white : colors.black, border: `2px solid ${colors.black}`, padding: "10px 24px", cursor: "pointer", fontWeight: 700, fontSize: 14, boxShadow: `3px 3px 0 ${colors.black}` }}
-        >
-          {unitCompleted ? "✓ Completed!" : "Unit完了 / Mark Complete"}
-        </button>
+      <div style={{ display: "flex", gap: 10, marginTop: 28, justifyContent: "space-between" }}>
+        {currentIdx > 0
+          ? <button onClick={() => setSection(sectionOrder[currentIdx - 1])} style={{ background: colors.grayLight, color: colors.gray, border: "none", borderRadius: 0, padding: "10px 20px", cursor: "pointer", fontWeight: 600, fontSize: 14 }}>← 前へ / Prev</button>
+          : <div />}
+        {currentIdx < sectionOrder.length - 1
+          ? <button onClick={() => setSection(sectionOrder[currentIdx + 1])} style={{ background: colors.accent, color: colors.white, border: "none", borderRadius: 0, padding: "10px 24px", cursor: "pointer", fontWeight: 600, fontSize: 14 }}>次へ / Next →</button>
+          : <button
+              onClick={handleComplete}
+              style={{ background: unitCompleted ? "#22c55e" : colors.yellow, color: unitCompleted ? colors.white : colors.black, border: `2px solid ${colors.black}`, padding: "10px 24px", cursor: "pointer", fontWeight: 700, fontSize: 14, boxShadow: `3px 3px 0 ${colors.black}` }}
+            >
+              {unitCompleted ? "✓ Completed!" : "Unit完了 / Mark Complete"}
+            </button>
+        }
       </div>
-      {showModal && <CompleteModal unitId={unitId} title={unitData.title} onClose={() => { setShowModal(false); router.push("/katakana"); }} />}
+      <div style={{ marginTop: 16 }}>
+        <UnitNavRow prevUnit={prevUnit} nextUnit={nextUnit} isPC={isPC} basePath="/katakana/unit" />
+      </div>
+      {showModal && <CompleteModal unitId={unitId} title={unitData.title} prevUnit={prevUnit} nextUnit={nextUnit} onClose={() => { setShowModal(false); router.push("/katakana"); }} />}
     </div>
   );
 
@@ -387,6 +435,7 @@ export default function KatakanaUnitPageClient({ id }: { id: string }) {
 
   return (
     <UnitPage
+      key={unitId}
       unitId={unitId}
       unitCompleted={progress.completed.includes(unitId)}
       onComplete={handleComplete}
